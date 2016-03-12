@@ -9,6 +9,9 @@ gem 'pg', '~> 0.15'
 # Web server
 gem 'puma'
 
+# Authentication
+gem 'devise'
+
 # View rendering
 gem 'slim-rails'
 
