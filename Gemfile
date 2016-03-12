@@ -19,7 +19,11 @@ end
 group :development do
   gem 'rubocop', require: false
   gem 'quiet_assets'
+  gem 'pry-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
 end
