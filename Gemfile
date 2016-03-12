@@ -12,10 +12,11 @@ gem 'turbolinks'
 
 group :development, :test do
   gem 'byebug'
-  gem 'rubocop', require: false
+  gem 'dotenv-rails'
 end
 
 group :development do
+  gem 'rubocop', require: false
 end
 
 group :test do

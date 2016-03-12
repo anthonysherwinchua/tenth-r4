@@ -7,8 +7,11 @@
 # Ignore bundler config.
 /.bundle
 
-# Ignore the default Postgres
+# Ignore the Postgres settings
 /config/database.yml
+
+# Ignore the ENV storage
+.env
 
 # Ignore all logfiles and tempfiles.
 /log/*
