@@ -12,6 +12,7 @@ gem 'turbolinks'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rubocop', require: false
 end
 
 group :development do
