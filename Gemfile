@@ -17,6 +17,7 @@ end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'quiet_assets'
 end
 
 group :test do
