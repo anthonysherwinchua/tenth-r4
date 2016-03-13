@@ -3,16 +3,16 @@ default: &default
     encoding: unicode
     pool: 5
 
-  development:
-    <<: *default
-    database: tenth_development
+development:
+  <<: *default
+  database: tenth_development
 
-  test:
-    <<: *default
-    database: tenth_test
+test:
+  <<: *default
+  database: tenth_test
 
-  production:
-    <<: *default
-    database: tenth_production
-    username: tenth
-    password: <%= ENV['DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  database: tenth_production
+  username: tenth
+  password: <%= ENV['DATABASE_PASSWORD'] %>
