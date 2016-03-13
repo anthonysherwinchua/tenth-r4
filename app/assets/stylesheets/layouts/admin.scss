@@ -28,4 +28,10 @@
     border-radius: 0px;
   }
 
+  .form-group.has-error {
+    .form-control {
+      border: 1px solid $brand-dark-danger;
+    }
+  }
+
 }
