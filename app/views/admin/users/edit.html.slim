@@ -1,0 +1,20 @@
+.container
+
+  = render partial: 'layouts/admin/breadcrumb', locals: { current_item: "#{@user.email}" }
+
+  .col-md-6.col-md-offset-3
+
+    .panel.panel-default
+
+      .panel-heading
+        h4.panel-title Edit User
+
+      = simple_form_for([:admin, @user]) do |f|
+        .panel-body
+          = render 'form', f: f
+
+        .panel-footer
+
+          .btn-toolbar
+            = link_to 'Back', admin_users_path, class: 'btn btn-default'
+            = f.submit 'Save', class: 'btn btn-success pull-right'

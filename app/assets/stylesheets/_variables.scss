@@ -17,11 +17,35 @@ $gray:                   #666; // #555
 $gray-light:             #888; // #777
 $gray-lighter:           #EEE; // #eee
 
-$brand-primary:         #324F91; // #337ab7
+$brand-primary:         #337ab7; // #337ab7
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
+
+$brand-light-primary:         lighten($brand-primary, 13.5%) !default;
+$brand-light-success:         lighten($brand-success, 13.5%) !default;
+$brand-light-info:            lighten($brand-info, 13.5%) !default;
+$brand-light-warning:         lighten($brand-warning, 13.5%) !default;
+$brand-light-danger:          lighten($brand-danger, 13.5%) !default;
+
+$brand-lighter-primary:       lighten($brand-primary, 27%) !default;
+$brand-lighter-success:       lighten($brand-success, 27%) !default;
+$brand-lighter-info:          lighten($brand-info, 27%) !default;
+$brand-lighter-warning:       lighten($brand-warning, 27%) !default;
+$brand-lighter-danger:        lighten($brand-danger, 27%) !default;
+
+$brand-dark-primary:          darken($brand-primary, 13.5%) !default;
+$brand-dark-success:          darken($brand-success, 13.5%) !default;
+$brand-dark-info:             darken($brand-info, 13.5%) !default;
+$brand-dark-warning:          darken($brand-warning, 13.5%) !default;
+$brand-dark-danger:           darken($brand-danger, 13.5%) !default;
+
+$brand-darker-primary:        darken($brand-primary, 27%) !default;
+$brand-darker-success:        darken($brand-success, 27%) !default;
+$brand-darker-info:           darken($brand-info, 27%) !default;
+$brand-darker-warning:        darken($brand-warning, 27%) !default;
+$brand-darker-danger:         darken($brand-danger, 27%) !default;
 
 
 //== Scaffolding

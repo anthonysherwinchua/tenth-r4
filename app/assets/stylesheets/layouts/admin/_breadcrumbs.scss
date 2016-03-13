@@ -1,0 +1,46 @@
+.admin {
+
+  .breadcrumb-container {
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding-right: 10px;
+    height: 45px;
+  }
+
+  .breadcrumb {
+    background-color: transparent;
+    margin: 5px;
+    float: left;
+    li {
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      a, a:hover, a:visited {
+        font-weight: normal;
+      }
+    }
+  }
+
+  .breadcrumb-right {
+    float: right;
+    .btn {
+      margin-top: 6px;
+    }
+  }
+
+  .breadcrumb > li + li:before {
+    content: "\2023";
+  }
+
+  .breadcrumb-blue {
+    background-color: $brand-light-primary;
+    ol > li {
+      color: white;
+      a, a:hover, a:visited {
+        color: white;
+      }
+    }
+  }
+
+}

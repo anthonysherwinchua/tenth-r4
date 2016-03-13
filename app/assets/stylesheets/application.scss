@@ -10,7 +10,7 @@
 // COMMON COMPONENTS
 @import "_typography";
 @import "_messages";
-@import "layouts/*";
+@import "layouts/**/*";
 
 // PAGE-SPECIFIC
 @import "devise/sessions/new";
