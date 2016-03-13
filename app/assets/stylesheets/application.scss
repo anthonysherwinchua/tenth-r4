@@ -1,16 +1,16 @@
-// COMMON COMPONENTS
-@import "_variables";
-@import "_typography";
-@import "_messages";
-@import "layouts/*";
-
 // LIBRARIES
+@import "_variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery-ui";
 @import "select2";
 @import "devise_bootstrap_views";
 @import "font-awesome";
+
+// COMMON COMPONENTS
+@import "_typography";
+@import "_messages";
+@import "layouts/*";
 
 // PAGE-SPECIFIC
 @import "devise/sessions/new";

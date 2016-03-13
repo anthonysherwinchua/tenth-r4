@@ -23,35 +23,24 @@
 
 .pages {
   header {
-    margin: 10px;
-    clear: both;
-    float: none;
+    height: 110px;
+    border-bottom: 2px solid $gray-lighter;
 
-    .logo-container {
-      text-align: left;
-      width: 33%;
-      float: left;
+    .navbar-default {
+      border: none;
+      background-color: transparent;
     }
 
-    .logo-container img {
-      max-width: 300px;
-    }
-
-    .logo-container p {
+    .navbar-brand p {
       margin: 5px 0px 0px 0px;
       font-size: 10px;
       text-align: center;
       color: $gray-light;
     }
 
-    .nav-container {
-      width: 67%;
-      float: left;
-    }
-
-    .navbar-default {
-      border: none;
-      background-color: transparent;
+    ul.nav.navbar-nav {
+      margin-top: 20px;
+      margin-left: 20px;
     }
 
     ul.nav.navbar-nav li{
@@ -68,26 +57,53 @@
           background-color: transparent;
         }
       }
+
+      :hover {
+        border-bottom: 1px solid $brand-primary;
+      }
     }
   }
 }
 
-@media (max-width: 768px) {
-  .pages header{
-    .logo-container {
-      float: none;
-      clear: both;
+@media (max-width: 320px) {
+  .pages header {
+    height: 80px;
+
+    .navbar-brand {
+      width: 70%;
     }
 
-    .logo-container img {
-      max-width: 250px;
+    .navbar-brand img{
+      width: 70%;
+      float: left;
     }
 
-    .nav-container {
-      float: none;
-      clear: both;
-      margin-top: 10px;
+    .navbar-brand p {
       width: 100%;
+      font-size: 8px;
+      line-height: 8px;
+      float: left;
+    }
+
+    .navbar-collapse {
+      border-top: none;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+
+      ul.nav.navbar-nav {
+        margin-right: 0px;
+        border: 1px solid $gray-lighter;
+        width: 75%;
+        float: right;
+
+        li {
+          background-color: white;
+          margin-top: 0;
+          padding-top: 10px;
+          z-index: 9999;
+        }
+      }
     }
   }
 }
