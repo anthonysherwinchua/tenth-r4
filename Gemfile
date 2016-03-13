@@ -25,6 +25,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Front-end
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'select2-rails'
@@ -41,13 +42,13 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
 end
 
 group :development do
   gem 'rubocop', require: false
   gem 'quiet_assets'
-  gem 'pry-rails'
-  gem 'factory_girl_rails'
 end
 
 group :test do

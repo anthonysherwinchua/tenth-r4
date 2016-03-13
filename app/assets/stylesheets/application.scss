@@ -1,4 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery-ui";
 @import "select2";
+@import "devise_bootstrap_views";
+
+@import "devise/session/new";
+
+body {
+  font-family: 'Arimo', sans-serif;
+}

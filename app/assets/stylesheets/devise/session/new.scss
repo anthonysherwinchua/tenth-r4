@@ -1,0 +1,47 @@
+.body-devise-sessions-new {
+
+  header {
+    margin: 30px;
+
+    .logo-container {
+      text-align: center;
+    }
+
+    .logo-container img {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+
+  main {
+    text-align: center;
+
+    .panel-heading {
+      h4{
+        text-transform: uppercase;
+      }
+    }
+
+    .panel-body {
+      input {
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 0;
+      }
+
+      label {
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+
+      .btn-primary {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+
+
+  }
+
+}
