@@ -1,12 +1,93 @@
-header {
-  margin: 30px;
+.devise-sessions {
+  header {
+    margin: 30px;
 
-  .logo-container {
-    text-align: center;
+    .logo-container {
+      text-align: center;
+    }
+
+    .logo-container img {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo-container p {
+      display: none;
+    }
+
+    .nav-container {
+      display: none;
+    }
   }
+}
 
-  .logo-container img {
-    width: 100%;
-    max-width: 400px;
+.pages {
+  header {
+    margin: 10px;
+    clear: both;
+    float: none;
+
+    .logo-container {
+      text-align: left;
+      width: 33%;
+      float: left;
+    }
+
+    .logo-container img {
+      max-width: 300px;
+    }
+
+    .logo-container p {
+      margin: 5px 0px 0px 0px;
+      font-size: 10px;
+      text-align: center;
+      color: $gray-light;
+    }
+
+    .nav-container {
+      width: 67%;
+      float: left;
+    }
+
+    .navbar-default {
+      border: none;
+      background-color: transparent;
+    }
+
+    ul.nav.navbar-nav li{
+      margin-top: 10px;
+
+      a {
+        padding: 10px;
+      }
+
+      &.active {
+        border-bottom: 2px solid $brand-primary;
+
+        a {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pages header{
+    .logo-container {
+      float: none;
+      clear: both;
+    }
+
+    .logo-container img {
+      max-width: 250px;
+    }
+
+    .nav-container {
+      float: none;
+      clear: both;
+      margin-top: 10px;
+      width: 100%;
+    }
   }
 }

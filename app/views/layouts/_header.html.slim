@@ -3,3 +3,31 @@
     .col-xs-12
       .logo-container
         = link_to image_tag('logo.jpg'), root_path
+        p DOLE POEA LICENSE NO. 111-LB-033012-R
+
+      .nav-container
+        nav.navbar.navbar-default
+          .container-fluid
+            .navbar-header
+              button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-menu" data-toggle="collapse" type="button"
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              .visible-xs-block
+                a.navbar-brand href="#" Menu
+
+          #main-menu.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li.active
+                a href="#"
+                  | Home
+                  span.sr-only (current)
+              li
+                a href="#" About Us
+              li
+                a href="#" Search
+              li
+                a href="#" Contact Us
+              li
+                a href="#" Band
