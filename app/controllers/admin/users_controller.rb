@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.save
       redirect_to admin_users_path, notice: 'Successfully created user'
     else
-      flash.now[:error] = user.error
+      flash.now[:error] = @user.errors
       render :new
     end
   end
@@ -30,7 +30,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.update_attributes(user_params)
       redirect_to admin_users_path, notice: 'Successfully updated user'
     else
-      flash.now[:error] = @user.error
+      flash.now[:error] = @user.errors
       render :new
     end
   end
