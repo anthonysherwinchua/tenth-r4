@@ -13,13 +13,13 @@
 
       #main-menu.collapse.navbar-collapse
         ul.nav.navbar-nav
-          li.active
+          li class=active_link?('base')
             = link_to 'Dashboard', admin_dashboard_path
-          li
+          li class=active_link?('pages')
             = link_to 'Main Site', root_path, target: '_blank'
-          li
+          li class=active_link?('users')
             = link_to 'Users', admin_users_path
-          li
+          li class=active_link?('')
             a href="#" Contact Us
-          li
+          li class=active_link?('')
             a href="#" Band
