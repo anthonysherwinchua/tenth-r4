@@ -1,0 +1,18 @@
+= render partial: 'layouts/admin/breadcrumb'
+
+.container
+  .row
+    .col-xs-12
+      table.table.table-hover.table-striped
+        thead
+          tr
+            th Degree
+            th width="20%"
+
+        tbody
+          - @academic_degrees.each do |academic_degree|
+            tr
+              td = academic_degree.degree
+              td
+                = link_to 'Edit', edit_admin_academic_degree_path(academic_degree), class: 'btn btn-primary'
+                = link_to 'Delete', [:admin, academic_degree], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

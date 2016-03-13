@@ -1,0 +1,20 @@
+= render partial: 'layouts/admin/breadcrumb', locals: { current_item: "#{@academic_degree.degree}" }
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+
+      .panel.panel-default
+
+        .panel-heading
+          h4.panel-title Edit Academic Degree
+
+        = simple_form_for([:admin, @academic_degree]) do |f|
+          .panel-body
+            = render 'form', f: f
+
+          .panel-footer
+
+            .btn-toolbar
+              = link_to 'Back', admin_academic_degrees_path, class: 'btn btn-default'
+              = f.submit 'Save', class: 'btn btn-success pull-right'

@@ -46,7 +46,8 @@ module ApplicationHelper
   end
 
   def active_link?(link_controller_name)
-    controller_name == link_controller_name ? 'active' : ''
+    link_controller_name = [link_controller_name] if link_controller_name.is_a?(String)
+    link_controller_name.include?(controller_name) ? 'active' : ''
   end
 
   private

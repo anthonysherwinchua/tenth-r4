@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'base#dashboard'
 
-    resources :users
+    resources :users, only: [:index, :new, :create, :edit, :update, :delete]
+    resources :academic_degrees, only: [:index, :new, :create, :edit, :update, :delete]
 
     root to: 'base#dashboard'
   end
