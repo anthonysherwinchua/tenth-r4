@@ -30,6 +30,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'select2-rails'
 gem 'turbolinks'
+gem 'font-awesome-rails'
 
 # Background worker
 gem 'sidekiq'

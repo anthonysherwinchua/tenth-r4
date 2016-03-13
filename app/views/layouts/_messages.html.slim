@@ -1,0 +1,13 @@
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    div class=("alert #{bootstrap_class_for(name)} fade in")
+      = fa_icon flash_icon_for(name), class: 'pull-left'
+      button.close aria-hidden="true" data-dismiss="alert" type="button"  &times;
+      = content_tag :div, msg, :id => "flash_#{name}"
+
+- if defined?(resource) && resource.errors.count > 0
+  .alert.alert-danger
+    = fa_icon flash_icon_for("error"), class: 'pull-left'
+    button.close aria-hidden="true" data-dismiss='alert' type='button'  &times;
+    div
+      = devise_error_messages!

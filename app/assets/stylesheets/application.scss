@@ -1,13 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Arimo:400,700);
+// COMMON COMPONENTS
+@import "_variables";
+@import "_typography";
+@import "_messages";
+@import "layouts/*";
 
+// LIBRARIES
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery-ui";
 @import "select2";
 @import "devise_bootstrap_views";
+@import "font-awesome";
 
-@import "devise/session/new";
-
-body {
-  font-family: 'Arimo', sans-serif;
-}
+// PAGE-SPECIFIC
+@import "devise/sessions/new";

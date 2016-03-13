@@ -14,19 +14,21 @@ html
     /= favicon_link_tag "icon.png"
 
   body*app_data class="#{css_class_name}"
-    /#messages
-      /= render 'layouts/messages'
+    #messages
+      = render 'layouts/messages'
 
     header#header
       = render 'layouts/header'
 
-
-    /= render 'layouts/modal'
+    = render 'layouts/modal'
 
     main
       = yield
 
-    /= render 'layouts/footer'
+    #footer
+      = render 'layouts/footer'
 
-    /javascript:
-    /  FAWM.init();
+    = javascript_include_tag "application"
+
+    javascript:
+      Tenth.init();
