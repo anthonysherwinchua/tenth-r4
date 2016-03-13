@@ -23,12 +23,12 @@
 
 .pages, .admin {
   header {
-    height: 110px;
-    border-bottom: 2px solid $gray-lighter;
 
     .navbar-default {
       border: none;
-      background-color: transparent;
+      background-color: white;
+      height: 110px;
+      border-bottom: 2px solid $gray-lighter;
     }
 
     .navbar-brand p {
@@ -65,9 +65,17 @@
   }
 }
 
+.admin {
+  main {
+    margin-top: 120px;
+  }
+}
+
 @media (max-width: 320px) {
   .pages header, .admin header {
-    height: 80px;
+    .navbar-default {
+      height: 80px;
+    }
 
     .navbar-brand {
       width: 70%;
