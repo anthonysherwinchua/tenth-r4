@@ -22,7 +22,7 @@ module ApplicationHelper
   def css_class_name
     action = get_action_name
     controller_name = controller_path.underscore.gsub('::', '-').tr('_', '-').tr('/', '-')
-    @css_class_name ||= "#{controller_name} body-#{controller_name}-#{action.underscore}"
+    @css_class_name ||= "#{controller_name.split('-').first} #{controller_name} body-#{controller_name}-#{action.underscore}"
   end
 
   def get_action_name

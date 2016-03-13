@@ -1,0 +1,25 @@
+.nav-container
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle.collapsed aria-expanded="false" data-target="#main-menu" data-toggle="collapse" type="button"
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        = link_to admin_dashboard_path, class: 'navbar-brand' do
+          = image_tag('logo.jpg')
+          p Admin Dashboard
+
+      #main-menu.collapse.navbar-collapse
+        ul.nav.navbar-nav
+          li.active
+            = link_to 'Dashboard', admin_dashboard_path
+          li
+            = link_to 'Main Site', root_path, target: '_blank'
+          li
+            a href="#" Search
+          li
+            a href="#" Contact Us
+          li
+            a href="#" Band

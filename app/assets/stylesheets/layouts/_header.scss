@@ -21,7 +21,7 @@
   }
 }
 
-.pages {
+.pages, .admin {
   header {
     height: 110px;
     border-bottom: 2px solid $gray-lighter;
@@ -66,7 +66,7 @@
 }
 
 @media (max-width: 320px) {
-  .pages header {
+  .pages header, .admin header {
     height: 80px;
 
     .navbar-brand {
