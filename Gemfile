@@ -37,7 +37,6 @@ gem 'sidekiq'
 # 3rd party services
 gem 'aws-sdk', '~> 2'
 
-
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'

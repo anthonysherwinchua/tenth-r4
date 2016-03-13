@@ -1,8 +1,8 @@
 module ApplicationHelper
   def app_data
     as_html_data(
-        view:       javascript_view_name,
-        environment: Rails.env
+      view: javascript_view_name,
+      environment: Rails.env
     )
   end
 
@@ -28,12 +28,12 @@ module ApplicationHelper
   def get_action_name
     action = action_name
     case action
-      when 'update'
-        'Edit'
-      when 'create'
-        'New'
-      else
-        action.camelcase
+    when 'update'
+      'Edit'
+    when 'create'
+      'New'
+    else
+      action.camelcase
     end
   end
 
@@ -53,14 +53,14 @@ module ApplicationHelper
 
   def string_for(flash_type)
     case flash_type.to_sym
-      when :success, :notice
-        { icon: "check", class: 'alert-success' }
-      when :error, :alert
-        { icon: "ban", class: 'alert-danger' }
-      when :info
-        { icon: 'info', class: 'alert-info' }
-      else
-        { icon: 'warning', class: 'alert-warning' }
+    when :success, :notice
+      { icon: 'check', class: 'alert-success' }
+    when :error, :alert
+      { icon: 'ban', class: 'alert-danger' }
+    when :info
+      { icon: 'info', class: 'alert-info' }
+    else
+      { icon: 'warning', class: 'alert-warning' }
     end
   end
 end
