@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 # Front-end
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise-bootstrap-views'
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'select2-rails'

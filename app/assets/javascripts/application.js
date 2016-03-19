@@ -15,5 +15,6 @@
 //= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require data-confirm-modal
 //= require select2
 //= require_tree .

@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-md-6.col-md-offset-3
+
+      .panel.panel-default
+
+        .panel-heading
+          h4.panel-title Edit #{current_item.class.name.titlecase}
+
+        = simple_form_for([:admin, current_item]) do |f|
+          .panel-body
+            = render 'form', f: f
+
+          .panel-footer
+
+            .btn-toolbar
+              = link_to 'Back', [:admin, controller_name.to_sym], class: 'btn btn-default'
+              = f.submit 'Save', class: 'btn btn-success pull-right'

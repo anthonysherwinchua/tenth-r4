@@ -1,4 +1,4 @@
-= render partial: 'layouts/admin/breadcrumb'
+= render 'layouts/admin/breadcrumb'
 
 .container
   .row
@@ -7,9 +7,9 @@
       .panel.panel-default
 
         .panel-heading
-          h4.panel-title New Academic Degree
+          h4.panel-title New #{current_item.class.name.titlecase}
 
-        = simple_form_for([:admin, @academic_degree]) do |f|
+        = simple_form_for([:admin, current_item]) do |f|
           .panel-body
             = render 'form', f: f
 

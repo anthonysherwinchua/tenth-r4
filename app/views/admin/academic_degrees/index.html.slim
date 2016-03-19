@@ -1,4 +1,4 @@
-= render partial: 'layouts/admin/breadcrumb'
+= render 'layouts/admin/breadcrumb'
 
 .container
   .row
@@ -10,9 +10,10 @@
             th width="20%"
 
         tbody
-          - @academic_degrees.each do |academic_degree|
+          - @current_items.each do |current_item|
             tr
-              td = academic_degree.degree
               td
-                = link_to 'Edit', edit_admin_academic_degree_path(academic_degree), class: 'btn btn-primary'
-                = link_to 'Delete', [:admin, academic_degree], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+                = current_item.degree
+              td
+                = render 'admin/base/buttons', current_item: current_item
+

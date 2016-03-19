@@ -1,5 +1,7 @@
 - name ||= nil
 - other_btns ||= []
+- show_page = current_page?(action: 'show', id: params[:id] || '1') rescue false
+
 .container
   .row
     .col-xs-12
@@ -18,7 +20,6 @@
           - other_btns.each do |other_btn|
             = link_to other_btn[:label], other_btn[:link], class: 'btn btn-warning' rescue nil
 
-          - show_page = current_page?(action: 'show', id: params[:id] || '1') rescue false
           - if show_page
             = link_to 'Edit', [:edit, :admin, controller_name.singularize.to_sym], class: 'btn btn-default' rescue nil
 
