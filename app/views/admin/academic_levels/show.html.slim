@@ -1,4 +1,4 @@
-= render 'layouts/admin/breadcrumb', current_item: @current_item.name
+= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name
 
 .container
   .row
@@ -6,7 +6,7 @@
       .panel.panel-default
 
         .panel-heading
-          h4.panel-title Academic Degree
+          h4.panel-title Academic Level
 
         .panel-body
           = render 'show'

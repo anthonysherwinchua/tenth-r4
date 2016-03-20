@@ -7,12 +7,12 @@
         .panel-heading
           h4.panel-title Edit #{current_item.class.name.titlecase}
 
-        = simple_form_for([:admin, current_item]) do |f|
+        = simple_form_for([:admin, @current_item_parent, current_item]) do |f|
           .panel-body
             = render 'form', f: f
 
           .panel-footer
 
             .btn-toolbar
-              = link_to 'Back', [:admin, controller_name.to_sym], class: 'btn btn-default'
+              = link_to 'Back', [:admin, @current_item_parent, controller_name.to_sym], class: 'btn btn-default'
               = f.submit 'Save', class: 'btn btn-success pull-right'

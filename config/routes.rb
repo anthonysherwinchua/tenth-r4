@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'base#dashboard'
 
     resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :academic_levels
-    resources :academic_degrees
+    resources :academic_levels do
+      resources :academic_degrees
+    end
 
     root to: 'base#dashboard'
   end

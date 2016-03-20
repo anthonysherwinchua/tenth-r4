@@ -1,3 +1,3 @@
-= link_to 'Show', [:admin, current_item], class: 'btn btn-sm btn-info', remote: true, data: { toggle: 'modal', target: '#default-modal' }
-= link_to 'Edit', [:edit, :admin, current_item], class: 'btn btn-sm btn-primary'
-= link_to 'Delete', [:admin, current_item], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+= link_to 'Show', [:admin, @current_item_parent, current_item], class: 'btn btn-sm btn-info', remote: true, data: { toggle: 'modal', target: '#default-modal' }
+= link_to 'Edit', [:edit, :admin, @current_item_parent, current_item], class: 'btn btn-sm btn-primary'
+= link_to 'Delete', [:admin, @current_item_parent, current_item], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
