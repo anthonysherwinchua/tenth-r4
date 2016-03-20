@@ -5,7 +5,6 @@ RSpec.describe Admin::UsersController, type: :controller do
   let(:user) { create(:user) }
   before { sign_in user }
 
-
   describe 'GET #index' do
     let(:count) { 3 }
     let!(:users) { create_list(:user, count) }
