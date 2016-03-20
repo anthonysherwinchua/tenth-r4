@@ -47,7 +47,7 @@ class Admin::AcademicDegreesController < Admin::BaseController
   end
 
   def academic_degree_params
-    params.require(:academic_degree).permit(:degree)
+    params.require(:academic_degree).permit(:degree, :enabled)
   end
 
 end
