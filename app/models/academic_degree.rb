@@ -1,3 +1,7 @@
 ﻿class AcademicDegree < ActiveRecord::Base
-  validates :degree, presence: true, uniqueness: true
+
+  belongs_to :academic_level
+
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+
 end

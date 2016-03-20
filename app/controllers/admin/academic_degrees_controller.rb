@@ -3,7 +3,7 @@ class Admin::AcademicDegreesController < Admin::BaseController
   before_action :prepare_academic_degree, only: [:show, :edit, :update, :destroy]
 
   def index
-    @current_items = AcademicDegree.order('degree asc')
+    @current_items = AcademicDegree.order('name asc')
   end
 
   def show
@@ -31,7 +31,7 @@ class Admin::AcademicDegreesController < Admin::BaseController
       redirect_to admin_academic_degrees_path, notice: 'Successfully updated academic degree'
     else
       flash.now[:error] = @current_item.errors
-      render :new
+      render :edit
     end
   end
 
@@ -47,7 +47,7 @@ class Admin::AcademicDegreesController < Admin::BaseController
   end
 
   def academic_degree_params
-    params.require(:academic_degree).permit(:degree, :enabled)
+    params.require(:academic_degree).permit(:name)
   end
 
 end

@@ -12,9 +12,7 @@
         tbody
           - @current_items.each do |current_item|
             tr
-              td
-                = check_box_tag :current_item, :enabled, current_item.enabled, disabled: 'disabled', class: 'checkbox-custom'
-                p.checkbox-custom-label = current_item.degree
+              td = current_item.name
               td
                 = render 'admin/base/buttons', current_item: current_item
 
