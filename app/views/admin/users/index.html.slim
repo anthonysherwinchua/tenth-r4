@@ -1,18 +1,18 @@
-= render partial: 'layouts/admin/breadcrumb'
+= render 'layouts/admin/breadcrumb'
 
 .container
   .row
     .col-xs-12
-      table.table.table-hover.table-striped
+      table.table.table-hover.table-striped.table-condensed
         thead
           tr
             th Email
             th width="20%"
 
         tbody
-          - @users.each do |user|
+          - @current_items.each do |current_item|
             tr
-              td = user.email
+              td = current_item.email
               td
-                = link_to 'Edit', edit_admin_user_path(user), class: 'btn btn-primary'
-                = link_to 'Delete', [:admin, user], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+                = render 'admin/base/buttons', current_item: current_item
+
