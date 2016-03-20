@@ -5,10 +5,22 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'base#dashboard'
 
-    resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :academic_levels do
       resources :academic_degrees
     end
+    resources :blood_types
+    resources :citizenships
+    resources :civil_statuses
+    resources :contact_types
+    resources :countries
+    resources :documents
+    resources :languages
+    resources :relationships
+    resources :religions
+    resources :skills
+    resources :skin_types
+    resources :users
+    resources :zodiacs
 
     root to: 'base#dashboard'
   end

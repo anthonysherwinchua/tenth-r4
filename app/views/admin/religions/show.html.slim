@@ -1,0 +1,12 @@
+= render 'layouts/admin/breadcrumb', current_item_name: @current_item.name
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      .panel.panel-default
+
+        .panel-heading
+          h4.panel-title Religion
+
+        .panel-body
+          = render 'show'
