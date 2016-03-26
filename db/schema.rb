@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320050204) do
+ActiveRecord::Schema.define(version: 20160326092748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -359,12 +359,6 @@ ActiveRecord::Schema.define(version: 20160320050204) do
 
   add_index "skills", ["name"], name: "index_skills_on_name", using: :btree
 
-  create_table "skin_types", force: :cascade do |t|
-    t.string "name"
-  end
-
-  add_index "skin_types", ["name"], name: "index_skin_types_on_name", using: :btree
-
   create_table "sources", force: :cascade do |t|
     t.string  "name",    default: ""
     t.string  "code",    default: ""
@@ -405,12 +399,6 @@ ActiveRecord::Schema.define(version: 20160320050204) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "zodiacs", force: :cascade do |t|
-    t.string "name"
-  end
-
-  add_index "zodiacs", ["name"], name: "index_zodiacs_on_name", using: :btree
 
   add_foreign_key "academic_degrees", "academic_levels"
 end

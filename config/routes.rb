@@ -18,9 +18,7 @@ Rails.application.routes.draw do
     resources :relationships
     resources :religions
     resources :skills
-    resources :skin_types
     resources :users
-    resources :zodiacs
 
     root to: 'base#dashboard'
   end
