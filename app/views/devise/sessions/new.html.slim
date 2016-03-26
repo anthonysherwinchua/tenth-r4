@@ -3,7 +3,8 @@
     .col-xs-12.col-sm-6.col-sm-offset-3
       .panel.panel-default.devise-bs
         .panel-heading
-          h4 = t('.sign_in', :default => "Sign in")
+          .logo
+            = image_tag('logo.jpg')
         .panel-body
           = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
             .form-group
