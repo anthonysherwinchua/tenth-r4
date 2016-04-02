@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard', to: 'base#dashboard'
 
-    resources :academic_levels do
-      resources :academic_degrees
-    end
+    resources :academic_levels
     resources :blood_types
     resources :citizenships
     resources :civil_statuses
