@@ -24,3 +24,4 @@
 .idea
 
 app/policies/sample_policy.rb
+coverage
