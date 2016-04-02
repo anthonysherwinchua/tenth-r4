@@ -12,7 +12,7 @@ class Admin::BaseController < ApplicationController
   private
 
   def authorize_admin_access?
-    authorize :'admin', :access?
+    authorize :admin, :access?
   end
 
 end

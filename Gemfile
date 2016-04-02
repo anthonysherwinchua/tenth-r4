@@ -11,8 +11,8 @@ gem 'puma'
 
 # Authentication & Authorisations
 gem 'devise'
-gem "rolify"
-gem "pundit"
+gem 'rolify'
+gem 'pundit'
 
 # View rendering
 gem 'slim-rails'
@@ -56,5 +56,5 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
+  gem 'simplecov', require: false
 end
