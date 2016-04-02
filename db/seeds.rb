@@ -1,12 +1,11 @@
-[
-  {:id => 1, :name => "N/A"},
-  {:id => 2, :name => "Preschool"},
-  {:id => 3, :name => "Elementary school"},
-  {:id => 4, :name => "High school"},
-  {:id => 5, :name => "Tertiary education"},
-  {:id => 6, :name => "Vocational education"},
-  {:id => 7, :name => "Graduate education"},
-  {:id => 8, :name => "Adult education"}
-].each do |level|
-  AcademicLevel.where(name: level[:name]).first_or_create
+files = ['academic_levels']
+
+files.each do |file|
+  if file.singularize.camelize.constantize.count < 1
+    puts "File: #{file}"
+    require Rails.root + "db/seeds/#{file}.rb"
+  else
+    puts "Skipping File: #{file}"
+  end
 end
+
