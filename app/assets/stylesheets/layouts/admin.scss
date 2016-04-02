@@ -1,5 +1,10 @@
 .admin {
 
+  select {
+    -webkit-border-radius: 0px;
+    -webkit-appearance: none;
+  }
+
   .btn {
     margin: 5px;
   }
@@ -56,6 +61,26 @@
     font-family: 'FontAwesome';
     color: $brand-danger;
     margin-right: 5px;
+  }
+
+  .help-block {
+    border: 1px solid $brand-dark-danger;
+    background-color: $brand-danger;
+    color: $gray-lighter;
+    padding: 5px;
+    margin: 0 0 10px 0;
+
+    &:before {
+      content: "\f05a";
+      font-family: 'FontAwesome';
+      margin-right: 5px;
+    }
+
+    a, a:visited, a:hover, a:focus {
+      color: $gray-lighter;
+      font-weight: 700;
+    }
+
   }
 
 }
