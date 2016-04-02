@@ -48,7 +48,7 @@ class Admin::CitizenshipsController < Admin::BaseController
   end
 
   def citizenship_params
-    params.require(:citizenship).permit(:name)
+    params.require(:citizenship).permit(:name, :enabled)
   end
 
 end

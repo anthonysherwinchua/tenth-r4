@@ -48,7 +48,7 @@ class Admin::DocumentsController < Admin::BaseController
   end
 
   def document_params
-    params.require(:document).permit(:name)
+    params.require(:document).permit(:name, :enabled)
   end
 
 end

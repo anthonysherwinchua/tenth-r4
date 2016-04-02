@@ -48,7 +48,7 @@ class Admin::LanguagesController < Admin::BaseController
   end
 
   def language_params
-    params.require(:language).permit(:name)
+    params.require(:language).permit(:name, :enabled)
   end
 
 end

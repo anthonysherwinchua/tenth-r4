@@ -48,7 +48,7 @@ class Admin::SkillsController < Admin::BaseController
   end
 
   def skill_params
-    params.require(:skill).permit(:name)
+    params.require(:skill).permit(:name, :enabled)
   end
 
 end

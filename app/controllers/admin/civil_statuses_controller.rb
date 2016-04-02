@@ -48,7 +48,7 @@ class Admin::CivilStatusesController < Admin::BaseController
   end
 
   def civil_status_params
-    params.require(:civil_status).permit(:name)
+    params.require(:civil_status).permit(:name, :enabled)
   end
 
 end

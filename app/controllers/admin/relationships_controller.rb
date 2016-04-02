@@ -48,7 +48,7 @@ class Admin::RelationshipsController < Admin::BaseController
   end
 
   def relationship_params
-    params.require(:relationship).permit(:name)
+    params.require(:relationship).permit(:name, :enabled)
   end
 
 end

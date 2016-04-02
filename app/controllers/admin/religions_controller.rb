@@ -48,7 +48,7 @@ class Admin::ReligionsController < Admin::BaseController
   end
 
   def religion_params
-    params.require(:religion).permit(:name)
+    params.require(:religion).permit(:name, :enabled)
   end
 
 end

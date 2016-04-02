@@ -48,7 +48,7 @@ class Admin::CountriesController < Admin::BaseController
   end
 
   def country_params
-    params.require(:country).permit(:name)
+    params.require(:country).permit(:name, :iso, :printable_name, :iso3, :numcode)
   end
 
 end
