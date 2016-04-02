@@ -30,7 +30,6 @@ gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'select2-rails'
-gem 'turbolinks'
 gem 'font-awesome-rails'
 
 # Background worker
