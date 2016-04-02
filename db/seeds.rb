@@ -1,4 +1,4 @@
-files = ['academic_levels']
+files = ['academic_levels', 'users']
 
 files.each do |file|
   if file.singularize.camelize.constantize.count < 1
