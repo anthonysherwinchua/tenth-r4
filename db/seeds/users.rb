@@ -1,6 +1,7 @@
 [
-  {"created_at"=>'Sat, 14 Jul 2012 17:30:34 UTC +00:00', "email"=>"admin@10thstory.com", "first_name"=>"", "id"=>1, "last_name"=>"", "middle_name"=>"", "updated_at"=>'Sat, 02 Apr 2016 01:01:40 UTC +00:00', "username"=>""},
-  {"created_at"=>'Sun, 28 Jul 2013 11:17:04 UTC +00:00', "email"=>"anthonysherwinchua@gmail.com", "first_name"=>"", "id"=>2, "last_name"=>"", "middle_name"=>"", "updated_at"=>'Sat, 02 Apr 2016 02:47:09 UTC +00:00', "username"=>nil}
+  { email: 'alfonso@10thstory.com', username: 'alfonso', name: 'Alfonso', password: 'password123' },
+  { email: 'anthonysherwinchua@gmail.com', username: 'anthony', name: 'Anthony', password: 'password123' },
+  { email: 'encoder@10thstory.com', username: 'encoder', name: 'encoder', password: 'password123' }
 ].each do |user|
-  User.where(email: user['email']).first_or_create(password: 'password123')
+  User.where(email: user[:email]).first_or_create(user)
 end
