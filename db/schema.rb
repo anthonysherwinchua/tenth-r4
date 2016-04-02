@@ -11,18 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326092748) do
+ActiveRecord::Schema.define(version: 20160402035224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "academic_degrees", force: :cascade do |t|
-    t.string  "name",              default: ""
-    t.integer "academic_level_id"
-  end
-
-  add_index "academic_degrees", ["academic_level_id"], name: "index_academic_degrees_on_academic_level_id", using: :btree
-  add_index "academic_degrees", ["name"], name: "index_academic_degrees_on_name", using: :btree
 
   create_table "academic_levels", force: :cascade do |t|
     t.string "name"
