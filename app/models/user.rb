@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :trackable
   rolify
 
-  validates :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }
+  validates :email, :username, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true
 
   validate :validate_username
 
