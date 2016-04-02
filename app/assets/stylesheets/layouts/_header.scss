@@ -43,7 +43,16 @@
       margin-left: 20px;
     }
 
-    ul.nav.navbar-nav li{
+    ul.nav.navbar-nav.navbar-right .btn-danger{
+      color: white;
+      padding: 5px 10px;
+
+      &:hover {
+        background-color: $brand-dark-danger;
+      }
+    }
+
+    ul.nav.navbar-nav.navbar-left li{
       margin-top: 10px;
 
       a {
@@ -71,7 +80,6 @@
         }
       }
     }
-
 
   }
 }

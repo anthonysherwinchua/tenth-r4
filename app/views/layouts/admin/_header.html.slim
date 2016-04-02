@@ -12,7 +12,7 @@
           p Admin Dashboard
 
       #main-menu.collapse.navbar-collapse
-        ul.nav.navbar-nav
+        ul.nav.navbar-nav.navbar-left
           li class=active_link?('base')
             = link_to 'Dashboard', admin_dashboard_path
           li class=active_link?('pages')
@@ -31,3 +31,7 @@
                 = link_to "Languages", admin_languages_path
                 = link_to "Relationships", admin_relationships_path
                 = link_to "Users", admin_users_path
+
+        ul.nav.navbar-nav.navbar-right
+          li
+            = link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
