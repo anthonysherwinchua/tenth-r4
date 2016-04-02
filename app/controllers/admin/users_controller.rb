@@ -1,5 +1,6 @@
 class Admin::UsersController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_user, only: [:show, :edit, :update, :destroy]
 
   def index

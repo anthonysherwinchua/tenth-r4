@@ -1,5 +1,6 @@
 class Admin::ReligionsController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_religion, only: [:show, :edit, :update, :destroy]
 
   def index

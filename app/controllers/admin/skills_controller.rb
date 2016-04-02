@@ -1,5 +1,6 @@
 class Admin::SkillsController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_skill, only: [:show, :edit, :update, :destroy]
 
   def index

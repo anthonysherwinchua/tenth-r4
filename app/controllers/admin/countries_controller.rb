@@ -1,5 +1,6 @@
 class Admin::CountriesController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_country, only: [:show, :edit, :update, :destroy]
 
   def index

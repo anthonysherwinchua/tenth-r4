@@ -1,5 +1,6 @@
 class Admin::DocumentsController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_document, only: [:show, :edit, :update, :destroy]
 
   def index

@@ -1,5 +1,6 @@
 class Admin::AcademicLevelsController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_academic_level, only: [:show, :edit, :update, :destroy]
 
   def index
