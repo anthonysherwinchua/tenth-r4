@@ -10,3 +10,12 @@ files.each do |file|
   end
 end
 
+
+files = ['user_roles']
+
+files.each do |file|
+  puts "File: #{file}"
+  require Rails.root + "db/seeds/#{file}.rb"
+  puts 'forced to seed'
+end
+
