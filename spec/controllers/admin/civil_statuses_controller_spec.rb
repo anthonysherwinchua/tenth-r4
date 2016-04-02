@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::CivilStatusesController, type: :controller do
 
-  include_examples "admin-only controller"
+  include_examples 'admin-only controller'
 
   let(:user) { create(:user) }
   before { sign_in user }

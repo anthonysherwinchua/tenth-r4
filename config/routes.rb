@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :contact_types
     resources :countries
     resources :documents
+    resources :job_openings
     resources :languages
     resources :occupations
     resources :relationships
