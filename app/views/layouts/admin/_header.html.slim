@@ -17,20 +17,21 @@
             = link_to 'Dashboard', admin_dashboard_path
           li class=active_link?('pages')
             = link_to 'Main Site', root_path, target: '_blank'
-          li.dropdown class=active_link?('')
-            a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-              | Admin Settings
-              span.caret
-            ul.dropdown-menu
-              li
-                = link_to "Academic Levels", admin_academic_levels_path
-                = link_to "Blood Types", admin_blood_types_path
-                = link_to "Citizenships", admin_citizenships_path
-                = link_to "Civil Statuses", admin_civil_statuses_path
-                = link_to "Contact Types", admin_contact_types_path
-                = link_to "Languages", admin_languages_path
-                = link_to "Relationships", admin_relationships_path
-                = link_to "Users", admin_users_path
+          - if policy(:admin).access?
+            li.dropdown class=active_link?('')
+              a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                | Admin Settings
+                span.caret
+              ul.dropdown-menu
+                li
+                  = link_to "Academic Levels", admin_academic_levels_path
+                  = link_to "Blood Types", admin_blood_types_path
+                  = link_to "Citizenships", admin_citizenships_path
+                  = link_to "Civil Statuses", admin_civil_statuses_path
+                  = link_to "Contact Types", admin_contact_types_path
+                  = link_to "Languages", admin_languages_path
+                  = link_to "Relationships", admin_relationships_path
+                  = link_to "Users", admin_users_path
 
         ul.nav.navbar-nav.navbar-right
           li

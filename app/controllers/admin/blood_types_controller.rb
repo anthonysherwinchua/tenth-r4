@@ -1,5 +1,6 @@
 class Admin::BloodTypesController < Admin::BaseController
 
+  before_action :authorize_admin_access?
   before_action :prepare_blood_type, only: [:show, :edit, :update, :destroy]
 
   def index
