@@ -11,7 +11,7 @@ FactoryGirl.define do
 
     trait :encoder do
       after :create do |user|
-        user.remove_role :admin
+        user.roles = [] # removes :admin role
         user.add_role :encoder
       end
     end

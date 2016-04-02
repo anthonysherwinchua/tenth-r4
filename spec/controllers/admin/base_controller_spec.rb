@@ -16,7 +16,7 @@ RSpec.describe Admin::BaseController, type: :controller do
 
   end
 
-  context 'signed in' do
+  context 'signed in as admin' do
     let(:user) { create(:user) }
 
     before { sign_in user }
