@@ -1,5 +1,5 @@
 files = ['academic_levels', 'users', 'blood_types', 'citizenships', 'civil_statuses', 'contact_types', 'languages',
-         'relationships']
+         'relationships', 'countries']
 
 files.each do |file|
   if file.singularize.camelize.constantize.count < 1
