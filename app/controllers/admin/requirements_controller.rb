@@ -58,5 +58,5 @@ class Admin::RequirementsController < Admin::BaseController
   def requirement_params
     params.require(:requirement).permit(:document_id, :job_opening_id, :enabled)
   end
-  
+
 end

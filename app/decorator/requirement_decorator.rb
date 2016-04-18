@@ -11,7 +11,7 @@ class RequirementDecorator < SimpleDelegator
   end
 
   def name
-    document.name + " for " + job_opening.name
+    document.name + ' for ' + job_opening.name
   end
 
   def country_name
