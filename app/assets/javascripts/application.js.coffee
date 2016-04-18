@@ -4,7 +4,6 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require data-confirm-modal
-#= require_tree ./admin
 
 window.Tenth ||= {}
 Tenth.Views ||= {}
