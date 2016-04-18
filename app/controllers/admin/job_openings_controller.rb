@@ -8,6 +8,7 @@ class Admin::JobOpeningsController < Admin::BaseController
   end
 
   def show
+    @current_item = JobOpeningDecorator.new(@current_item)
   end
 
   def new

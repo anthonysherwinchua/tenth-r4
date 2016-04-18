@@ -1,0 +1,14 @@
+table.table.table-hover
+  tbody
+    tr
+      td Country
+      td = @current_item.country_name
+    tr
+      td Occupation
+      td = @current_item.occupation_name
+    tr
+      td Document
+      td = @current_item.document.name
+    tr
+      td Enabled
+      td = @current_item.enabled.humanize

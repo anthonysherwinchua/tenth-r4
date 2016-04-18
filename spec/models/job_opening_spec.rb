@@ -4,6 +4,7 @@ RSpec.describe JobOpening, type: :model do
 
   it { is_expected.to belong_to(:country) }
   it { is_expected.to belong_to(:occupation) }
+  it { is_expected.to have_many(:requirements).inverse_of(:job_opening) }
 
   it { is_expected.to validate_presence_of(:country) }
   it { is_expected.to validate_presence_of(:occupation) }

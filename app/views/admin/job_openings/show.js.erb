@@ -1,2 +1,3 @@
 $(".modal-title").html("<%= @current_item.occupation.name + "@" + @current_item.country.name %>")
 $(".modal-body").html("<%= j render 'show' %>")
+$(".modal-footer").html("<%= j render 'show_buttons' %>")
