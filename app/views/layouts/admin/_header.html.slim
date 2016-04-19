@@ -20,20 +20,27 @@
           - if policy(:admin).access?
             li.dropdown class=active_link?('')
               a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-                | Admin Settings
+                | Jobs Settings
+                span.caret
+              ul.dropdown-menu
+                li
+                  = link_to "Documents", admin_documents_path
+                  = link_to "Job Openings", admin_job_openings_path
+                  = link_to "Occupations", admin_occupations_path
+
+            li.dropdown class=active_link?('')
+              a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                | Picklists Settings
                 span.caret
               ul.dropdown-menu
                 li
                   = link_to "Academic Levels", admin_academic_levels_path
                   = link_to "Civil Statuses", admin_civil_statuses_path
                   = link_to "Contact Types", admin_contact_types_path
-                  = link_to "Documents", admin_documents_path
-                  = link_to "Job Openings", admin_job_openings_path
                   = link_to "Languages", admin_languages_path
-                  = link_to "Occupations", admin_occupations_path
                   = link_to "Relationships", admin_relationships_path
-                  = link_to "Users", admin_users_path
 
+            li = link_to "Users", admin_users_path
         ul.nav.navbar-nav.navbar-right
           li
             = link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' }
