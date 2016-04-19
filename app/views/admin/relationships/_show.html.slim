@@ -3,3 +3,6 @@ table.table.table-hover
     tr
       td Relationship
       td = @current_item.name
+    tr
+      td Enabled?
+      td = @current_item.enabled.humanize

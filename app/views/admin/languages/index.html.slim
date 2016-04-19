@@ -7,12 +7,14 @@
         thead
           tr
             th Language
+            th Enabled?
             th width="20%"
 
         tbody
           - @current_items.each do |current_item|
             tr
               td = current_item.name
+              td = current_item.enabled.humanize
               td
                 = render 'admin/base/buttons', current_item: current_item
 
