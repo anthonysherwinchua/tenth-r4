@@ -8,7 +8,7 @@ class EncoderPolicy
   end
 
   def access?
-    @user.has_role? :encoder || @user.has_role? :admin
+    @user.has_role?(:encoder) || @user.has_role?(:admin)
   end
 
 end

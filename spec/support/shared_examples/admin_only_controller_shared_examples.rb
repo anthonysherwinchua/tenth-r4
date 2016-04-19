@@ -4,6 +4,6 @@ RSpec.shared_examples 'admin-only controller' do
 
     before { sign_in encoder }
 
-    it { expect { get :index }.to raise_error(Pundit::NotAuthorizedError) }
+    it { expect(get :index).to redirect_to root_path }
   end
 end

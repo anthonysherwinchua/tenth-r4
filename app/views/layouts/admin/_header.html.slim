@@ -13,10 +13,14 @@
 
       #main-menu.collapse.navbar-collapse
         ul.nav.navbar-nav.navbar-left
-          li class=active_link?('base')
-            = link_to 'Dashboard', admin_dashboard_path
-          li class=active_link?('pages')
-            = link_to 'Main Site', root_path, target: '_blank'
+          - if policy(:encoder).access?
+            li class=active_link?('base')
+              = link_to 'Dashboard', admin_dashboard_path
+            li class=active_link?('pages')
+              = link_to 'Main Site', root_path, target: '_blank'
+            li class=active_link?('pages')
+              = link_to 'Applicants', admin_applicants_path
+
           - if policy(:admin).access?
             li.dropdown class=active_link?('')
               a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
