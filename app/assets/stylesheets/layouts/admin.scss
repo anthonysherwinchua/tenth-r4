@@ -1,8 +1,9 @@
 .admin {
 
-  select {
-    -webkit-border-radius: 0px;
-    -webkit-appearance: none;
+  select.form-control {
+    border: 0;
+    outline: 1px inset $gray-lighter;
+    outline-offset: -1px;
   }
 
   .btn {
