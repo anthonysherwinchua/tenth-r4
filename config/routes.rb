@@ -6,8 +6,6 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'base#dashboard'
 
     resources :academic_levels
-    resources :blood_types
-    resources :citizenships
     resources :civil_statuses
     resources :contact_types
     resources :countries
