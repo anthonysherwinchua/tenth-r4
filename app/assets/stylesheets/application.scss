@@ -1,5 +1,5 @@
 // LIBRARIES
-@import "_variables";
+@import "variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "jquery-ui";
@@ -8,8 +8,8 @@
 @import "font-awesome";
 
 // COMMON COMPONENTS
-@import "_typography";
-@import "_messages";
+@import "components/typography";
+@import "components/messages";
 @import "layouts/**/*";
 
 // PAGE-SPECIFIC
