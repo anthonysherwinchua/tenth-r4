@@ -9,10 +9,10 @@ class Admin::ApplicantsController < Admin::BaseController
 
   # def show
   # end
-  #
-  # def new
-  #   @current_item = Document.new
-  # end
+
+  def new
+    @current_item = Applicant.new
+  end
   #
   # def edit
   # end
