@@ -1,3 +1,38 @@
+#wizard.swMain
+  ul.anchor
+    li
+      a.done href="#step-1" isdone="1" rel="1"
+        .stepNumber
+          | 1
+        span.stepDesc
+          | Step 1
+          br
+          small Step 1 description
+    li
+      a.selected href="#step-2" isdone="0" rel="2"
+        .stepNumber
+          | 2
+        span.stepDesc
+          | Step 2
+          br
+          small Step 2 description
+    li
+      a.disabled href="#step-3" isdone="0" rel="3"
+        .stepNumber
+          | 3
+        span.stepDesc
+          | Step 3
+          br
+          small Step 3 description
+    li
+      a.disabled href="#step-4" isdone="0" rel="4"
+        .stepNumber
+          | 4
+        span.stepDesc
+          | Step 4
+          br
+          small Step 4 description
+
 .form
   .row
     .col-sm-4

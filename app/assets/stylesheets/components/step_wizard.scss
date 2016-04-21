@@ -1,0 +1,134 @@
+.swMain {
+  > ul {
+    display: table;
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    li {
+      display: table-cell;
+      text-align: center;
+      width: 1%;
+      > a {
+        &:before {
+          border-top: 4px solid $gray-light;
+          content: "";
+          display: block;
+          font-size: 0;
+          height: 1px;
+          overflow: hidden;
+          position: relative;
+          top: 21px;
+          width: 100%;
+          z-index: 1;
+        }
+        &.selected {
+          &:before {
+            border-color: $brand-info;
+          }
+          .stepNumber {
+            border-color: $brand-info;
+          }
+          .stepDesc {
+            color: $brand-darker-info;
+          }
+        }
+        &:hover {
+          text-decoration: none;
+        }
+        &.disabled {
+          cursor: default;
+        }
+      }
+      .stepDesc {
+        color: $gray;
+        display: block;
+        font-size: 14px;
+        margin-top: 4px;
+        max-width: 100%;
+        table-layout: fixed;
+        text-align: center;
+        word-wrap: break-word;
+        z-index: 104;
+      }
+      &:first-child > a:before {
+        left: 50%;
+        max-width: 51%;
+      }
+      &:last-child > a:before {
+        max-width: 50%;
+        width: 50%;
+      }
+    }
+    .stepNumber {
+      background-color: white;
+      border: 5px solid $gray-light;
+      //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+      border-radius: 100% 100% 100% 100%;
+      color: $gray-dark;
+      display: inline-block;
+      font-size: 15px;
+      height: 40px;
+      line-height: 30px;
+      position: relative;
+      text-align: center;
+      width: 40px;
+      z-index: 2;
+    }
+  }
+  .progress {
+    margin-bottom: 30px;
+  }
+  .stepContainer {
+    height: auto !important;
+  }
+  .loader {
+    display: none;
+  }
+  [class^="button"] {
+    display: none;
+  }
+  [class*=" button"] {
+    display: none;
+  }
+  .close {
+    display: none;
+  }
+  li > a.done {
+    &:before {
+      border-color: $brand-info;
+    }
+    .stepDesc {
+      color: $brand-darker-info;
+    }
+  }
+  ul li > a.done {
+    .stepNumber {
+      border-color: $brand-info;
+      background-color: $brand-info;
+      color: white;
+      text-indent: -9999px;
+      &:before {
+        content: "\f00c";
+        display: inline;
+        float: right;
+        font-family: 'FontAwesome';
+        font-weight: 300;
+        height: auto;
+        //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        text-shadow: none;
+        margin-right: 7px;
+        text-indent: 0;
+      }
+    }
+    &.wait .stepNumber {
+      background-color: $gray-lighter !important;
+      color: $gray-light !important;
+      text-indent: -0px !important;
+      &:before {
+        content: "" !important;
+      }
+    }
+  }
+}
