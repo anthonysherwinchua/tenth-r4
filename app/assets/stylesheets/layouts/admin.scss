@@ -2,10 +2,49 @@
 
 .admin {
 
-  select.form-control {
-    border: 0;
-    outline: 1px inset $gray-lighter;
-    outline-offset: -1px;
+  .fa-select-wrapper {
+    position: relative;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+    width: 100%;
+
+    &:after {
+      content: "\f078";
+      font-family: FontAwesome;
+      color: $gray-light;
+      padding: 8px;
+      position: absolute;
+      right: 0;
+      top: 25px;
+      background: transparent;
+      z-index: 1;
+    }
+
+    select.form-control {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      position: relative;
+      background: transparent;
+      padding: 9px;
+      border: 1px solid $gray-light;
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;
+      /* Safari 3-4, iOS 1-3.2, Android 1.6- */
+      -webkit-border-radius: 0px;
+      /* Firefox 1-3.6 */
+      -moz-border-radius: 0px;
+      /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
+      border-radius: 0px;
+      height: auto !important;
+      z-index: 2;
+      float: left;
+      width: 100%;
+    }
   }
 
   .btn {
@@ -31,7 +70,7 @@
   .form-control{
     outline: none;
     box-shadow: none;
-    background-color: #fff;
+    background-color: white;
     background-image: none;
     border: 1px solid $gray-light;
     border-radius: 0px;
