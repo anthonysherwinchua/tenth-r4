@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'base#dashboard'
 
     resources :academic_levels
-    resources :applicants, only: [:index, :new, :create, :edit, :update]
+    resources :applicants, only: [:index, :show, :new, :create, :edit, :update]
     resources :civil_statuses
     resources :contact_types
     resources :countries
