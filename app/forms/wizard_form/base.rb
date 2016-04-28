@@ -20,7 +20,7 @@ module WizardForm::Base
   end
 
   def current_wizard_step
-    steps[@current_step-1]
+    steps[@step_manager.current_step-1]
   end
 
   def steps
