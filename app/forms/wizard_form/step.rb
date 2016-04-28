@@ -2,7 +2,13 @@ class WizardForm::Step
 
   include ActiveModel::Model
   include ActiveModel::Validations
-  
+
+  def self.attr_accessor(*vars)
+    @attributes ||= []
+    @attributes.concat vars
+    super(*vars)
+  end
+
   def title
     # Option: override this if you want to have a custom title for the step
     # defaults to class name without suffix 'step'. e.g. FirstOfManyStep would be "First Of Many"
@@ -16,7 +22,7 @@ class WizardForm::Step
   end
 
   def self.strong_params
-    self::ATTRIBUTES
+    @attributes
   end
 
 end

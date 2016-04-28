@@ -1,8 +1,6 @@
 class ApplicantWizardForm::Steps::ExperienceStep < WizardForm::Step
 
-  ATTRIBUTES = [:first_name, :last_name]
-
-  attr_accessor *ATTRIBUTES
+  attr_accessor :first_name, :last_name
 
   validates :first_name, :last_name, presence: true
 
