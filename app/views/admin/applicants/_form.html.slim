@@ -1,30 +1,35 @@
-.form
-  .row
-    .col-sm-4
-      = f.input :first_name
-    .col-sm-2
-      = f.input :middle_name
-    .col-sm-4
-      = f.input :last_name
-    .col-sm-2
-      = f.input :suffix_name
+/.form
+/  .row
+/    .col-sm-4
+/      = f.input :first_name
+/    .col-sm-2
+/      = f.input :middle_name
+/    .col-sm-4
+/      = f.input :last_name
+/    .col-sm-2
+/      = f.input :suffix_name
+/
+/  .row
+/    .col-sm-6.col-md-3
+/      = f.input :birthday, html5: true
+/    .col-sm-6.col-md-3
+/      = f.input :birthplace
+/    .col-sm-6.col-md-3
+/      = f.input :height
+/    .col-sm-6.col-md-3
+/      = f.input :weight
+/
+/  .row
+/    .col-sm-6
+/      = f.association :religion, wrapper: :fa_select, include_blank: false
+/    .col-sm-6
+/      = f.association :civil_status, wrapper: :fa_select, include_blank: false
+/
+/  .row
+/    .col-sm-12
+/      = f.input :video_url
 
+- @wizard_form.current_wizard_step.attributes.each do |attr|
   .row
-    .col-sm-6.col-md-3
-      = f.input :birthday, html5: true
-    .col-sm-6.col-md-3
-      = f.input :birthplace
-    .col-sm-6.col-md-3
-      = f.input :height
-    .col-sm-6.col-md-3
-      = f.input :weight
-
-  .row
-    .col-sm-6
-      = f.association :religion, wrapper: :fa_select, include_blank: false
-    .col-sm-6
-      = f.association :civil_status, wrapper: :fa_select, include_blank: false
-
-  .row
-    .col-sm-12
-      = f.input :video_url
+    .col-xs-12
+      = f.input attr
