@@ -25,4 +25,12 @@ class WizardForm::Step
     @attributes
   end
 
+  def self.attributes
+    @attributes
+  end
+
+  def attributes
+    self.class.attributes
+  end
+
 end
