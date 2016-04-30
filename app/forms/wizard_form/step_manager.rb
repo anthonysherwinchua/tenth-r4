@@ -55,7 +55,7 @@ module WizardForm
     def set_current_step(step)
       ensure_valid(step)
       raise WizardForm::Errors::NotPermittedError unless step <= last_permitted_step
-      raise WizardForm::Errors::ZeroValueError if step < 1
+      raise WizardForm::Errors::ZeroValueError if step.zero?
       @current_step = step
     end
 

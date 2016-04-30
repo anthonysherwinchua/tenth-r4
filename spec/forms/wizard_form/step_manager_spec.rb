@@ -38,7 +38,7 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
 
         it 'raises WizardForm::Errors::ZeroOrBelowError' do
           expect { subject }.to raise_error do |error|
-            expect(error).to be_a(WizardForm::Errors::ZeroOrBelowError)
+            expect(error).to be_a(WizardForm::Errors::NegativeValueError)
           end
         end
       end
@@ -60,7 +60,7 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
 
         it 'raises WizardForm::Errors::ZeroOrBelowError' do
           expect { subject }.to raise_error do |error|
-            expect(error).to be_a(WizardForm::Errors::ZeroOrBelowError)
+            expect(error).to be_a(WizardForm::Errors::NegativeValueError)
           end
         end
       end
@@ -82,7 +82,7 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
 
         it 'raises WizardForm::Errors::ZeroOrBelowError' do
           expect { subject }.to raise_error do |error|
-            expect(error).to be_a(WizardForm::Errors::ZeroOrBelowError)
+            expect(error).to be_a(WizardForm::Errors::NegativeValueError)
           end
         end
       end
@@ -114,6 +114,16 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
       it 'raises WizardForm::Errors::NotPermittedError' do
         expect { subject.current_step = new_current_step }.to raise_error do |error|
           expect(error).to be_a(WizardForm::Errors::NotPermittedError)
+        end
+      end
+    end
+
+    context 'invalid step (below 1)' do
+      let(:new_current_step) { 0 }
+
+      it 'raises WizardForm::Errors::NotPermittedError' do
+        expect { subject.current_step = new_current_step }.to raise_error do |error|
+          expect(error).to be_a(WizardForm::Errors::ZeroValueError)
         end
       end
     end
