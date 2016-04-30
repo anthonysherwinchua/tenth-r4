@@ -16,6 +16,15 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
   subject { described_class.new(params) }
 
   describe "#initialize" do
+    context 'just started' do
+      let(:completed_step) { 0 }
+      let(:current_step) { 1 }
+
+      it { expect(subject.total_steps).to eq(total_steps) }
+      it { expect(subject.completed_step).to eq(completed_step) }
+      it { expect(subject.current_step).to eq(current_step) }
+    end
+
     context 'valid parameters' do
       it { expect(subject.total_steps).to eq(total_steps) }
       it { expect(subject.completed_step).to eq(completed_step) }
@@ -160,4 +169,45 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
     end
   end
 
+  describe "#" do
+    let(:model) do
+      name = 'TheModel'
+      if Struct::const_defined? name
+        Struct.const_get name
+      else
+        Struct.new("TheModel") do
+          def self.attributes
+            [:name]
+          end
+        end
+      end
+    end
+
+    let!(:steps) do
+      1.upto(total_steps).map do |i|
+        name = "Step#{i}"
+        if Struct::const_defined? name
+          Struct.const_get name
+        else
+          Struct.new(name, :valid?) do
+            def self.strong_params
+              [:name]
+            end
+          end
+        end
+      end
+    end
+
+    before do
+      expect_any_instance_of(Struct::Step1).to receive(:valid?).and_return(true)
+      expect_any_instance_of(Struct::Step2).to receive(:valid?).and_return(true)
+      expect_any_instance_of(Struct::Step3).to receive(:valid?).and_return(false)
+      subject.prepare_completed_step(steps, model)
+    end
+
+    it { expect(subject.completed_step).to eq(2) }
+    it { expect(subject.current_step).to eq(3) }
+
+  end
+  
 end

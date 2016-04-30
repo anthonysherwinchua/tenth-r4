@@ -37,6 +37,7 @@ module WizardForm
         step = step.new(attrs)
         break unless step.valid?
         @completed_step = index+1
+        @current_step = next_step if @current_step > next_step
       end
     end
 
