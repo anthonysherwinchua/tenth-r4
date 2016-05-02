@@ -1,6 +1,7 @@
 module WizardForm::Base
 
-  attr_reader :step_manager
+  attr_reader :step_manager, :current_wizard_step_instance
+  attr_accessor :model
 
   def self.included(base)
     class << base
@@ -9,7 +10,9 @@ module WizardForm::Base
         e = __new(*args)
         e.prepare_step_manager
         e.step_manager.prepare_completed_step(self::STEPS, args.first)
+        e.model = args.first
         e.step_manager.current_step = args.second
+        e.prepare_current_wizard_step_instance(e.model)
         e
       end
     end
@@ -17,6 +20,10 @@ module WizardForm::Base
 
   def prepare_step_manager
     @step_manager = WizardForm::StepManager.new(total_steps: steps.count, completed_step: 0, current_step: 1)
+  end
+
+  def prepare_current_wizard_step_instance(model)
+    @current_wizard_step_instance = current_wizard_step.new(model)
   end
 
   def current_wizard_step
@@ -28,6 +35,10 @@ module WizardForm::Base
   end
 
   def save(params={})
-    steps[@current_step].new(params).save
+    @current_wizard_step_instance.save(params)
+  end
+
+  def errors
+    @current_wizard_step_instance.errors
   end
 end

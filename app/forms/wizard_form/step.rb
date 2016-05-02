@@ -1,12 +1,30 @@
 class WizardForm::Step
 
   include ActiveModel::Model
-  include ActiveModel::Validations
 
-  def self.attr_accessor(*vars)
-    @attributes ||= []
-    @attributes.concat vars
-    super(*vars)
+  def self.main_model(name, klass, attrs={})
+    attr_reader name
+
+    @attributes = prepare_attributes(klass, attrs)
+    attr_accessor(*@attributes)
+
+    delegate *@attributes, to: name, prefix: false, allow_nil: false
+    delegate :errors, to: name, prefix: false, allow_nil: false
+  end
+
+  def self.strong_params
+    @attributes + @has_one_attributes
+  end
+
+  def self.has_one(name, klass, attrs={})
+    attr_reader name
+
+    @has_one_attributes ||= []
+    new_attrs = prepare_attributes(klass, attrs)
+    @has_one_attributes += [{ :"#{name}" => new_attrs }]
+    attr_accessor(*new_attrs)
+
+    delegate *new_attrs, to: name, prefix: false, allow_nil: true
   end
 
   def title
@@ -21,16 +39,17 @@ class WizardForm::Step
     # Optional: override this if you want a description for the step
   end
 
-  def self.strong_params
-    @attributes
-  end
+  private
 
-  def self.attributes
-    @attributes
-  end
-
-  def attributes
-    self.class.attributes
+  def self.prepare_attributes(klass, attrs={})
+    if attrs.has_key?(:only)
+      [attrs[:only]].flatten.map(&:to_s)
+    elsif attrs.has_key?(:except)
+      except_vars = [attrs[:except]].flatten.map(&:to_s)
+      klass.column_names - except_vars
+    else
+      klass.column_names
+    end
   end
 
 end

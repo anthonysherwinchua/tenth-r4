@@ -32,10 +32,11 @@ module WizardForm
 
     def prepare_completed_step(steps, model)
       steps.each_with_index do |step, index|
-        strong_params = step.strong_params
-        attrs = model.attributes.select{|key, _value| strong_params.include?(key.to_sym) }
-        step = step.new(attrs)
-        break unless step.valid?
+        step = step.new(model)
+        unless step.valid?
+          step.errors.clear
+          break
+        end
         @completed_step = index+1
         @current_step = next_step if @current_step > next_step
       end
