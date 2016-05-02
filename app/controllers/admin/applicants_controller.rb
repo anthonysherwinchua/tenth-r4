@@ -15,7 +15,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def create
     if @wizard_form.save(applicant_params)
-      redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
+      # redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
     else
       flash[:error] = @wizard_form.errors.full_messages
       render :new
@@ -24,9 +24,10 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def update
     if @wizard_form.save(applicant_params)
-      redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
+      # redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
     else
       flash[:error] = @wizard_form.errors.full_messages
+      render :edit
     end
   end
 
