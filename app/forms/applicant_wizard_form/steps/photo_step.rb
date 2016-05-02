@@ -4,4 +4,7 @@ class ApplicantWizardForm::Steps::PhotoStep < WizardForm::Step
 
   validates :first_name, :last_name, presence: true
 
+  def initialize(applicant)
+    @applicant = applicant
+  end
 end

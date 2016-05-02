@@ -4,4 +4,7 @@ class ApplicantWizardForm::Steps::ExperienceStep < WizardForm::Step
 
   validates :first_name, :last_name, presence: true
 
+  def initialize(applicant)
+    @applicant = applicant
+  end
 end
