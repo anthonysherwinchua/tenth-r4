@@ -11,7 +11,7 @@
         .panel-heading
           h4.panel-title New Applicant
 
-        = simple_form_for([:admin, @wizard_form.applicant]) do |f|
+        = simple_form_for([:admin, @wizard_form.current_wizard_step_instance], as: :applicant, url: admin_applicants_path) do |f|
           .panel-body
             = render 'form', f: f
 

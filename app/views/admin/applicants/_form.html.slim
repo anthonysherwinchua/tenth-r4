@@ -1,35 +1,55 @@
-/.form
-/  .row
-/    .col-sm-4
-/      = f.input :first_name
-/    .col-sm-2
-/      = f.input :middle_name
-/    .col-sm-4
-/      = f.input :last_name
-/    .col-sm-2
-/      = f.input :suffix_name
-/
-/  .row
-/    .col-sm-6.col-md-3
-/      = f.input :birthday, html5: true
-/    .col-sm-6.col-md-3
-/      = f.input :birthplace
-/    .col-sm-6.col-md-3
-/      = f.input :height
-/    .col-sm-6.col-md-3
-/      = f.input :weight
-/
-/  .row
-/    .col-sm-6
-/      = f.association :religion, wrapper: :fa_select, include_blank: false
-/    .col-sm-6
-/      = f.association :civil_status, wrapper: :fa_select, include_blank: false
-/
-/  .row
-/    .col-sm-12
-/      = f.input :video_url
-
-- @wizard_form.current_wizard_step.attributes.each do |attr|
+.form
   .row
-    .col-xs-12
-      = f.input attr
+    .col-sm-4
+      = f.input :first_name
+    .col-sm-2
+      = f.input :middle_name
+    .col-sm-4
+      = f.input :last_name
+    .col-sm-2
+      = f.input :suffix_name, label: 'Suffix name (e.g. Jr.)'
+
+  .row
+    .col-sm-6.col-md-3
+      = f.input :birthday, html5: true, as: :date, label: 'Date of Birth'
+    .col-sm-6.col-md-3
+      = f.input :birthplace, label: 'Birth Place'
+    .col-sm-6.col-md-2
+      = f.input :height, label: 'Height (cm)'
+    .col-sm-6.col-md-2
+      = f.input :weight, label: 'Weight (kg)'
+    .col-sm-6.col-md-2
+      = f.input :gender, as: :radio_buttons, collection: [['Male', '0'],['Female', '1']], label: false
+
+  .row
+    .col-sm-6
+      = f.input :religion_id, collection: Religion.all, wrapper: :fa_select, include_blank: false
+    .col-sm-6
+      = f.input :civil_status_id, collection: CivilStatus.all.map{|v| [v.name, v.id] }, wrapper: :fa_select, include_blank: false
+
+  = f.simple_fields_for :father, @wizard_form.current_wizard_step_instance.father do |ff|
+    .row
+      .col-sm-4
+        = ff.input :name
+      .col-sm-4
+        = ff.input :age
+      .col-sm-4
+        = ff.input :occupation
+
+  = f.simple_fields_for :mother, @wizard_form.current_wizard_step_instance.mother do |ff|
+    .row
+      .col-sm-4
+        = ff.input :name
+      .col-sm-4
+        = ff.input :age
+      .col-sm-4
+        = ff.input :occupation
+
+  = f.simple_fields_for :spouse, @wizard_form.current_wizard_step_instance.spouse do |ff|
+    .row
+      .col-sm-4
+        = ff.input :name
+      .col-sm-4
+        = ff.input :age
+      .col-sm-4
+        = ff.input :occupation
