@@ -33,7 +33,7 @@ class Admin::ApplicantsController < Admin::BaseController
   private
 
   def prepare_applicant
-    @applicant = Applicant.new
+    @applicant = Applicant.where(id: params[:id]).first_or_initialize
   end
 
   def prepare_step
