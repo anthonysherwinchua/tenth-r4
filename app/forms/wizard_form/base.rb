@@ -11,7 +11,7 @@ module WizardForm::Base
         e.prepare_step_manager
         e.step_manager.prepare_completed_step(self::STEPS, args.first)
         e.model = args.first
-        e.step_manager.current_step = args.second
+        e.step_manager.current_step = args.second.to_i
         e.prepare_current_wizard_step_instance(e.model)
         e
       end
@@ -35,7 +35,11 @@ module WizardForm::Base
   end
 
   def save(params={})
-    @current_wizard_step_instance.save(params)
+    status = @current_wizard_step_instance.save(params)
+    if status
+      @step_manager.next_step!
+    end
+    status
   end
 
   def errors

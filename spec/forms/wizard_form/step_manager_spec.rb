@@ -169,7 +169,7 @@ RSpec.describe WizardForm::StepManager, type: :wizard_form do
     end
   end
 
-  describe "#" do
+  describe "#prepare_completed_step" do
     let(:model) do
       name = 'TheModel'
       if Struct::const_defined? name

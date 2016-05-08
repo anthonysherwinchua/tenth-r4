@@ -22,6 +22,7 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
       @mother.update_attributes!(applicant: @applicant)
       @spouse.update_attributes!(applicant: @applicant)
     end
+    true
   rescue ActiveRecord::RecordInvalid => e
     @father.valid?
     @mother.valid?
@@ -37,8 +38,11 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
 
   def prepare_relationship(name)
     relationship = Relationship.where(["lower(name) = ?", name]).first
-    family_member = ApplicantFamilyMember.where(relationship_id: relationship.id)
-                      .first_or_initialize
+    family_member = if @applicant.persisted?
+                      @applicant.applicant_family_members.find_by(relationship_id: relationship.id)
+                    else
+                      ApplicantFamilyMember.new(relationship_id: relationship.id)
+                    end
     instance_variable_set("@#{name}", family_member)
   end
 

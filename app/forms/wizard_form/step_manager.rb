@@ -2,7 +2,7 @@ module WizardForm
   class StepManager
     attr_reader :total_steps, :completed_step, :current_step
 
-    def initialize(total_steps: 1, completed_step: 0, current_step: 1)
+    def initialize(total_steps: 1, completed_step: 0, current_step: 0)
       set_total_steps total_steps
       set_completed_step completed_step
       set_current_step current_step
@@ -26,14 +26,19 @@ module WizardForm
       @completed_step + 1
     end
 
+    def next_step!
+      @completed_step += 1
+      @current_step += 1
+    end
+
     def last_permitted_step
       wizard_completed? ? @completed_step : next_step
     end
 
     def prepare_completed_step(steps, model)
-      steps.each_with_index do |step, index|
-        step = step.new(model)
-        unless step.valid?
+      steps.each_with_index do |step_klass, index|
+        step = step_klass.new(model)
+        if !model.persisted? || !step.valid?
           step.errors.clear
           break
         end
@@ -57,8 +62,7 @@ module WizardForm
     def set_current_step(step)
       ensure_valid(step)
       raise WizardForm::Errors::NotPermittedError unless step <= last_permitted_step
-      raise WizardForm::Errors::ZeroValueError if step.zero?
-      @current_step = step
+      @current_step = step.zero? ? last_permitted_step : step
     end
 
     def ensure_valid(step)

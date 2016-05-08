@@ -27,15 +27,21 @@ class WizardForm::Step
     delegate *new_attrs, to: name, prefix: false, allow_nil: true
   end
 
-  def title
+  def self.title
     # Option: override this if you want to have a custom title for the step
     # defaults to class name without suffix 'step'. e.g. FirstOfManyStep would be "First Of Many"
-    klass_name = self.class.to_s.split("::").last
-    klass_name = klass_name.to_s.gsub(/(.*)(Step)(.*)/, '\1\3')
+    klass_name = self.to_s.split("::").last
+    klass_name = klass_name.gsub(/(.*)(Step)(.*)/, '\1\3')
     klass_name.underscore.humanize.titleize
   end
 
-  def description
+  def self.partial_name
+    klass_name = self.to_s.split("::").last
+    klass_name = klass_name.gsub(/(.*)(Step)(.*)/, '\1\3')
+    "form_#{klass_name.underscore}"
+  end
+
+  def self.description
     # Optional: override this if you want a description for the step
   end
 

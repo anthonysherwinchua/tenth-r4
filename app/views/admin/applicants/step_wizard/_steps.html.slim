@@ -3,35 +3,13 @@
     .col-md-12
       #wizard.swMain
         ul.anchor
-          li
-            a.done href="#step-1" isdone="1" rel="1"
-              .stepNumber
-                | 1
-              span.stepDesc
-                | Step 1
-                br
-                small Step 1 description
-          li
-            a.selected href="#step-2" isdone="0" rel="2"
-              .stepNumber
-                | 2
-              span.stepDesc
-                | Step 2
-                br
-                small Step 2 description
-          li
-            a.disabled href="#step-3" isdone="0" rel="3"
-              .stepNumber
-                | 3
-              span.stepDesc
-                | Step 3
-                br
-                small Step 3 description
-          li
-            a.disabled href="#step-4" isdone="0" rel="4"
-              .stepNumber
-                | 4
-              span.stepDesc
-                | Step 4
-                br
-                small Step 4 description
+          - @wizard_form.steps.each_with_index do |step, index|
+            - step_number = index+1
+            li
+              a href="?step=#{step_number}" class=class_for_wizard_step(step_number)
+                .stepNumber
+                  = step_number
+                span.stepDesc
+                  = step.title
+                  br
+                  small = step.description

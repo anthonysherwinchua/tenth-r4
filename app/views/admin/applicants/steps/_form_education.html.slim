@@ -1,0 +1,13 @@
+.form
+  = f.simple_fields_for :primary_education, @wizard_form.current_wizard_step_instance.primary_education do |ff|
+    .row
+      .col-sm-4
+        = ff.input :academic_level_id, collection: AcademicLevel.all, wrapper: :fa_select, include_blank: false
+      .col-sm-4
+        = ff.input :school
+      .col-sm-4
+        = ff.input :from
+      .col-sm-4
+        = ff.input :to
+
+

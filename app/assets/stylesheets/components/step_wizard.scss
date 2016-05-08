@@ -12,7 +12,7 @@
       width: 1%;
       > a {
         &:before {
-          border-top: 4px solid $gray-light;
+          border-top: 4px solid $gray-lighter;
           content: "";
           display: block;
           font-size: 0;
@@ -25,13 +25,13 @@
         }
         &.selected {
           &:before {
-            border-color: $brand-info;
+            border-color: $brand-success;
           }
           .stepNumber {
-            border-color: $brand-info;
+            border-color: $brand-success;
           }
           .stepDesc {
-            color: $brand-darker-info;
+            color: $brand-darker-success;
           }
         }
         &:hover {
@@ -42,7 +42,7 @@
         }
       }
       .stepDesc {
-        color: $gray;
+        color: $gray-light;
         display: block;
         font-size: 14px;
         margin-top: 4px;
@@ -63,10 +63,10 @@
     }
     .stepNumber {
       background-color: white;
-      border: 5px solid $gray-light;
+      border: 5px solid $gray-lighter;
       //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
       border-radius: 100% 100% 100% 100%;
-      color: $gray-dark;
+      color: $gray-light;
       display: inline-block;
       font-size: 15px;
       height: 40px;
@@ -97,16 +97,24 @@
   }
   li > a.done {
     &:before {
-      border-color: $brand-info;
+      border-color: $brand-success;
     }
     .stepDesc {
-      color: $brand-darker-info;
+      color: $brand-darker-success;
+    }
+  }
+  li > a.next {
+    &:before, .stepNumber {
+      border-color: $brand-warning;
+    }
+    .stepDesc {
+      color: $brand-darker-warning;
     }
   }
   ul li > a.done {
     .stepNumber {
-      border-color: $brand-info;
-      background-color: $brand-info;
+      border-color: $brand-success;
+      background-color: $brand-success;
       color: white;
       text-indent: -9999px;
       &:before {

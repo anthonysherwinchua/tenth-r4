@@ -13,7 +13,7 @@
 
         = simple_form_for([:admin, @wizard_form.current_wizard_step_instance], as: :applicant, url: admin_applicants_path) do |f|
           .panel-body
-            = render 'form', f: f
+            = render "admin/applicants/steps/#{@wizard_form.current_wizard_step.partial_name}", f: f
 
           .panel-footer
 

@@ -1,9 +1,8 @@
 class Admin::ApplicantsController < Admin::BaseController
   before_action :authorize_encoder_access?
 
-  before_filter :prepare_applicant, only: [:show, :new, :edit, :create, :update]
-  before_filter :prepare_step, only: [:show, :new, :edit, :create, :update]
-  before_filter :prepare_wizard, only: [:show, :new, :edit, :create, :update]
+  before_action :prepare_applicant, only: [:show, :new, :edit, :create, :update]
+  before_action :prepare_wizard, only: [:show, :new, :edit, :create, :update]
 
   def index
     @current_items = Applicant.all
@@ -15,7 +14,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def create
     if @wizard_form.save(applicant_params)
-      # redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
+      redirect_to edit_admin_applicant_path(id: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
     else
       flash[:error] = @wizard_form.errors.full_messages
       render :new
@@ -24,7 +23,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def update
     if @wizard_form.save(applicant_params)
-      # redirect_to edit_admin_applicant_path(applicant: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
+      redirect_to edit_admin_applicant_path(id: @wizard_form.applicant, step: @wizard_form.step_manager.next_step)
     else
       flash[:error] = @wizard_form.errors.full_messages
       render :edit
@@ -35,10 +34,6 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def prepare_applicant
     @applicant = Applicant.where(id: params[:id]).first_or_initialize
-  end
-
-  def prepare_step
-    params[:step] ||= 1
   end
 
   def prepare_wizard
