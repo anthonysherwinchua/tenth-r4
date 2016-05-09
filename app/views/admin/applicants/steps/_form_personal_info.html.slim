@@ -29,27 +29,39 @@
 
   = f.simple_fields_for :father, @wizard_form.current_wizard_step_instance.father do |ff|
     .row
-      .col-sm-4
-        = ff.input :name
-      .col-sm-4
-        = ff.input :age
-      .col-sm-4
-        = ff.input :occupation
+      .col-sm-12
+        span.label.label-default Father
+        .well.well-sm
+          .row
+            .col-sm-4
+              = ff.input :name
+            .col-sm-4
+              = ff.input :age
+            .col-sm-4
+              = ff.input :occupation
 
   = f.simple_fields_for :mother, @wizard_form.current_wizard_step_instance.mother do |ff|
     .row
-      .col-sm-4
-        = ff.input :name
-      .col-sm-4
-        = ff.input :age
-      .col-sm-4
-        = ff.input :occupation
+      .col-sm-12
+        span.label.label-default Mother
+        .well.well-sm
+          .row
+            .col-sm-4
+              = ff.input :name
+            .col-sm-4
+              = ff.input :age
+            .col-sm-4
+              = ff.input :occupation
 
   = f.simple_fields_for :spouse, @wizard_form.current_wizard_step_instance.spouse do |ff|
     .row
-      .col-sm-4
-        = ff.input :name
-      .col-sm-4
-        = ff.input :age
-      .col-sm-4
-        = ff.input :occupation
+      .col-sm-12
+        span.label.label-default Spouse
+        .well.well-sm
+          .row
+            .col-sm-4
+              = ff.input :name
+            .col-sm-4
+              = ff.input :age
+            .col-sm-4
+              = ff.input :occupation

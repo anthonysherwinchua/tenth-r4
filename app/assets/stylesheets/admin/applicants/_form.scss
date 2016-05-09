@@ -3,4 +3,9 @@
   abbr {
     color: $brand-darker-danger;
   }
+
+  .label {
+    border-radius: 0;
+    padding-bottom: 0.1em;
+  }
 }
