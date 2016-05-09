@@ -8,9 +8,6 @@
 
       .panel.panel-default
 
-        .panel-heading
-          h4.panel-title Edit Applicant
-
         = simple_form_for([:admin, @wizard_form.current_wizard_step_instance], as: :applicant, url: admin_applicant_path(@applicant), method: :patch) do |f|
           .panel-body
             = render "admin/applicants/steps/#{@wizard_form.current_wizard_step.partial_name}", f: f
