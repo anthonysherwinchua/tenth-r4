@@ -8,8 +8,7 @@
   {:id => 7, :name => "Sister"},
   {:id => 8, :name => "Daughter"},
   {:id => 9, :name => "Son"},
-  {:id => 10, :name => "Husband"},
-  {:id => 11, :name => "Wife"}
+  {:id => 10, :name => "Spouse"}
 ].each do |relationship|
   Relationship.where(name: relationship[:name]).first_or_create
 end
