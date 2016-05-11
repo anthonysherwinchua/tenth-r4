@@ -27,8 +27,10 @@ module WizardForm
     end
 
     def next_step!
-      @completed_step += 1
-      @current_step += 1
+      if @current_step > @completed_step
+        @completed_step += 1
+        @current_step += 1
+      end
     end
 
     def last_permitted_step
