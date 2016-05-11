@@ -15,4 +15,12 @@ module AdminHelper
     end
   end
 
+  def step_link(step)
+    if @wizard_form.applicant.persisted?
+      edit_admin_applicant_path(step: step)
+    else
+      "#"
+    end
+  end
+
 end

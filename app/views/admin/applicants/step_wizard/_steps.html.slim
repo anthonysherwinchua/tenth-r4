@@ -6,7 +6,7 @@
           - @wizard_form.steps.each_with_index do |step, index|
             - step_number = index+1
             li
-              a href="?step=#{step_number}" class=class_for_wizard_step(step_number)
+              = link_to step_link(step_number), class: class_for_wizard_step(step_number) do
                 .stepNumber
                   = step_number
                 span.stepDesc
