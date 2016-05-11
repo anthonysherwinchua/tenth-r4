@@ -38,8 +38,9 @@ module WizardForm
     end
 
     def prepare_completed_step(steps, model)
+      _model = model.dup
       steps.each_with_index do |step_klass, index|
-        step = step_klass.new(model)
+        step = step_klass.new(_model)
         if !model.persisted? || !step.valid?
           step.errors.clear
           break
