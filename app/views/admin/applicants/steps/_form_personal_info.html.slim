@@ -19,7 +19,7 @@
     .col-sm-6.col-md-2
       = f.input :weight, label: 'Weight (kg)'
     .col-sm-6.col-md-2
-      = f.input :gender, as: :radio_buttons, collection: [['Male', '0'],['Female', '1']], label: false
+      = f.input :gender, as: :radio_buttons, collection: [['Male', '0'],['Female', '1']], label: false, checked: (f.object.gender ? "1" : "0")
 
   .row
     .col-sm-6
