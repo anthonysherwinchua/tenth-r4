@@ -27,6 +27,25 @@
     .col-sm-6
       = f.input :civil_status_id, collection: CivilStatus.all.map{|v| [v.name, v.id] }, wrapper: :fa_select, include_blank: false
 
+  = f.simple_fields_for :family_details, @wizard_form.current_wizard_step_instance.family_details do |ff|
+    .row
+      .col-sm-12
+        span.label.label-default Family Details
+        .well.well-sm
+          .row
+            .col-sm-2
+              = ff.input :no_in_fam, label: 'Number in Family'
+            .col-sm-2
+              = ff.input :brothers
+            .col-sm-2
+              = ff.input :sisters
+            .col-sm-2
+              = ff.input :children
+            .col-sm-2
+              = ff.input :eldest, label: 'Eldest child'
+            .col-sm-2
+              = ff.input :youngest, label: 'Youngest child'
+
   = f.simple_fields_for :father, @wizard_form.current_wizard_step_instance.father do |ff|
     .row
       .col-sm-12

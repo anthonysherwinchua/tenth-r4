@@ -5,25 +5,30 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
   has_one :father, ApplicantFamilyMember
   has_one :mother, ApplicantFamilyMember
   has_one :spouse, ApplicantFamilyMember
+  has_one :family_details, ApplicantFamilyDetail
 
   def initialize(applicant)
     @applicant = applicant
     prepare_relationships(:father, :mother, :spouse)
+    prepare_family_details
   end
 
   def save(params)
     Applicant.transaction do
+      @family_details.attributes = params.delete 'family_details'
       @father.attributes = params.delete 'father'
       @mother.attributes = params.delete 'mother'
       @spouse.attributes = params.delete 'spouse'
       @applicant.attributes = params
       @applicant.save!
+      @family_details.update_attributes!(applicant: @applicant)
       @father.update_attributes!(applicant: @applicant)
       @mother.update_attributes!(applicant: @applicant)
-      @spouse.update_attributes!(applicant: @applicant) if spouse_required?
+      @spouse.update_attributes(applicant: @applicant)
     end
     true
   rescue ActiveRecord::RecordInvalid => e
+    @family_details.valid?
     @father.valid?
     @mother.valid?
     @spouse.valid? if spouse_required?
@@ -50,6 +55,16 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
 
   def spouse_required?
     ['n/a', 'single'].exclude? @applicant.civil_status.name.downcase
+  end
+
+  def prepare_family_details
+    if @applicant.persisted?
+      @family_details = @applicant.applicant_family_detail
+    end
+
+    unless @family_details
+      @family_details = ApplicantFamilyDetail.new
+    end
   end
 
 end

@@ -1,0 +1,27 @@
+.form
+  - (1..@wizard_form.current_wizard_step::NUMBER_OF_WORK_EXPERIENCES).each do |i|
+    = f.simple_fields_for :"work_experience_#{i}", @wizard_form.current_wizard_step_instance.send("work_experience_#{i}") do |ff|
+      .row
+        .col-sm-12
+          span.label.label-default Work Experience ##{i}
+          .well.well-sm
+            .row
+              .col-sm-4
+                = ff.input :employer
+              .col-sm-2
+                = ff.input :occupation
+              .col-sm-2
+                = ff.input :country, collection: Country.enabled
+              .col-sm-4
+                = ff.input :address
+            .row
+              .col-sm-1
+                = ff.input :from
+              .col-sm-1
+                = ff.input :to
+              .col-sm-2
+                = ff.input :years
+              .col-sm-4
+                = ff.input :contact
+              .col-sm-3
+                = ff.input :salary
