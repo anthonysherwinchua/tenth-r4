@@ -8,6 +8,8 @@ class ApplicantWizardForm::Steps::ExperienceStep < WizardForm::Step
   has_one :work_experience_2, ApplicantEmployment
   has_one :work_experience_3, ApplicantEmployment
 
+  validate :atleast_one_experience
+
   def initialize(applicant)
     @applicant = applicant
     prepare_work_experiences()
@@ -47,6 +49,10 @@ class ApplicantWizardForm::Steps::ExperienceStep < WizardForm::Step
       work_experience = @applicant.applicant_employments.new
     end
     instance_variable_set("@work_experience_#{i+1}", work_experience)
+  end
+
+  def atleast_one_experience
+    @applicant.errors.add(:base, :invalid) if @applicant.applicant_employments.count == 0
   end
 
 end
