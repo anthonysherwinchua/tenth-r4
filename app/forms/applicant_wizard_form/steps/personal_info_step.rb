@@ -2,19 +2,32 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
 
   main_model :applicant, Applicant
 
+  has_many :applicant_contact_details, ApplicantContactDetail
+
   has_one :father, ApplicantFamilyMember
   has_one :mother, ApplicantFamilyMember
   has_one :spouse, ApplicantFamilyMember
   has_one :family_details, ApplicantFamilyDetail
 
-  def initialize(applicant)
+  def initialize(applicant, params={})
     @applicant = applicant
+    @applicant_contact_details = @applicant.applicant_contact_details || []
+    if @applicant_contact_details.blank?
+      @applicant_contact_details << @applicant.applicant_contact_details.build
+      @applicant_contact_details << @applicant.applicant_contact_details.build
+    end
     prepare_relationships(:father, :mother, :spouse)
     prepare_family_details
+    super(params)
   end
 
   def save(params)
     Applicant.transaction do
+      contact_details_attrs = params.delete 'applicant_contact_details_attributes'
+      @applicant.applicant_contact_details.each_with_index do |acd, i|
+        acd.attributes = contact_details_attrs["#{i}"]
+      end
+
       @family_details.attributes = params.delete 'family_details'
       @father.attributes = params.delete 'father'
       @mother.attributes = params.delete 'mother'
@@ -26,7 +39,6 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < WizardForm::Step
       @mother.update_attributes!(applicant: @applicant)
       @spouse.update_attributes(applicant: @applicant)
     end
-    true
   rescue ActiveRecord::RecordInvalid => e
     @family_details.valid?
     @father.valid?

@@ -27,6 +27,16 @@
     .col-sm-6
       = f.input :civil_status_id, collection: CivilStatus.all.map{|v| [v.name, v.id] }, wrapper: :fa_select, include_blank: false
 
+  = f.simple_fields_for :applicant_contact_details do |ff|
+    .row
+      .col-sm-12
+        .well.well-sm
+          .row
+            .col-sm-6
+              = ff.input :contact_type_id, collection: ContactType.all, wrapper: :fa_select, include_blank: false
+            .col-sm-6
+              = ff.input :value
+
   = f.simple_fields_for :family_details, @wizard_form.current_wizard_step_instance.family_details do |ff|
     .row
       .col-sm-12
