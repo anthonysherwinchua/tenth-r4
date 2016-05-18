@@ -8,9 +8,11 @@ class ApplicantWizardForm::Steps::EducationStep < WizardForm::Step
   has_one :education_2, ApplicantEducation
   has_one :education_3, ApplicantEducation
 
+  validate :atleast_one_education
+
   def initialize(applicant)
     @applicant = applicant
-    prepare_educations()
+    prepare_educations
   end
 
   def save(params)
@@ -47,6 +49,10 @@ class ApplicantWizardForm::Steps::EducationStep < WizardForm::Step
       education = @applicant.applicant_educations.new
     end
     instance_variable_set("@education_#{i+1}", education)
+  end
+
+  def atleast_one_education
+    @applicant.errors.add(:base, :invalid) if @applicant.applicant_educations.count == 0
   end
 
 end
