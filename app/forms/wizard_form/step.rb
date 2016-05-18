@@ -1,11 +1,11 @@
-class WizardForm::Step
+class WizardForm::Step < BaseForm
 
-  include ActiveModel::Model
-
-  def self.main_model(name, klass, attrs={})
+  def self.main_model(name, klass, opts={})
+    raise "Main model already defined" unless @main_model.blank?
+    @main_model = name
     attr_reader name
 
-    @attributes = prepare_attributes(klass, attrs)
+    @attributes = prepare_attributes(klass, opts)
     attr_accessor(*@attributes)
 
     delegate *@attributes, to: name, prefix: false, allow_nil: false
@@ -13,7 +13,24 @@ class WizardForm::Step
   end
 
   def self.strong_params
-    @attributes + @has_one_attributes
+    @attributes + (@has_one_attributes || []) + (@has_many_attributes || [])
+  end
+
+  def self.has_many(name, klass, attrs={})
+    attr_reader name
+
+    @has_many_attributes ||= []
+    new_attrs = prepare_attributes(klass, attrs)
+    @has_many_attributes += [{ :"#{name}_attributes" => new_attrs }]
+
+    delegate name, to: @main_model, prefix: false, allow_nil: true
+    delegate "#{name}_attributes=", to: @main_model, prefix: false, allow_nil: true
+
+    define_method "#{name}_attributes=" do |params|
+      instance_variable_get("@#{name}").each_with_index do |a, i|
+        a.attributes = params["#{i}"]
+      end
+    end
   end
 
   def self.has_one(name, klass, attrs={})
@@ -27,6 +44,12 @@ class WizardForm::Step
     delegate *new_attrs, to: name, prefix: false, allow_nil: true
   end
 
+  def self.partial_name
+    klass_name = self.to_s.split("::").last
+    klass_name = klass_name.gsub(/(.*)(Step)(.*)/, '\1\3')
+    "form_#{klass_name.underscore}"
+  end
+
   def self.title
     # Option: override this if you want to have a custom title for the step
     # defaults to class name without suffix 'step'. e.g. FirstOfManyStep would be "First Of Many"
@@ -35,22 +58,16 @@ class WizardForm::Step
     klass_name.underscore.humanize.titleize
   end
 
-  def self.partial_name
-    klass_name = self.to_s.split("::").last
-    klass_name = klass_name.gsub(/(.*)(Step)(.*)/, '\1\3')
-    "form_#{klass_name.underscore}"
-  end
-
   def self.description
     # Optional: override this if you want a description for the step
   end
 
   private
 
-  def self.prepare_attributes(klass, attrs={})
-    if attrs.has_key?(:only)
-      [attrs[:only]].flatten.map(&:to_s)
-    elsif attrs.has_key?(:except)
+  def self.prepare_attributes(klass, opts={})
+    if opts.has_key?(:only)
+      [opts[:only]].flatten.map(&:to_s)
+    elsif opts.has_key?(:except)
       except_vars = [attrs[:except]].flatten.map(&:to_s)
       klass.column_names - except_vars
     else
