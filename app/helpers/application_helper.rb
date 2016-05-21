@@ -7,11 +7,7 @@ module ApplicationHelper
   end
 
   def as_html_data(hash)
-    data = {}
-    hash.each do |k, v|
-      data["data-#{k.to_s.tr('_', '-')}"] = v
-    end
-    data
+    hash.transform_keys { |k| "data-#{k.to_s.tr('_', '-')}" }
   end
 
   def javascript_view_name
