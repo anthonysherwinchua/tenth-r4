@@ -1,5 +1,11 @@
 class WizardForm::Step < BaseForm
 
+  def self.inherited(child)
+    child.instance_variable_set("@has_many_attributes", [])
+    child.instance_variable_set("@has_one_attributes", [])
+    child.instance_variable_set("@attributes", [])
+  end
+
   def self.main_model(name, klass, opts={})
     raise "Main model already defined" unless @main_model.blank?
     @main_model = name
@@ -13,13 +19,12 @@ class WizardForm::Step < BaseForm
   end
 
   def self.strong_params
-    @attributes + (@has_one_attributes || []) + (@has_many_attributes || [])
+    @attributes + @has_one_attributes + @has_many_attributes
   end
 
   def self.has_many(name, klass, attrs={})
     attr_reader name
 
-    @has_many_attributes ||= []
     new_attrs = prepare_attributes(klass, attrs)
     @has_many_attributes += [{ :"#{name}_attributes" => new_attrs }]
 
