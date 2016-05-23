@@ -1,7 +1,9 @@
 class BaseForm
+
   include ActiveModel::Model
 
-  def initialize(params = {})
-    super(params)
-  end
+  include BaseForms::MainModel
+  include BaseForms::HasOne
+  include BaseForms::HasMany
+
 end
