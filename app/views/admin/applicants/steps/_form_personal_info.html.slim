@@ -1,96 +1,103 @@
 .form
-  .row
-    .col-sm-4
-      = f.input :first_name
-    .col-sm-2
-      = f.input :middle_name
-    .col-sm-4
-      = f.input :last_name
-    .col-sm-2
-      = f.input :suffix_name, label: 'Suffix name (e.g. Jr.)'
-
-  .row
-    .col-sm-6.col-md-3
-      = f.input :birthday, html5: true, as: :date, label: 'Date of Birth'
-    .col-sm-6.col-md-3
-      = f.input :birthplace, label: 'Birth Place'
-    .col-sm-6.col-md-2
-      = f.input :height, label: 'Height (cm)'
-    .col-sm-6.col-md-2
-      = f.input :weight, label: 'Weight (kg)'
-    .col-sm-6.col-md-2
-      = f.input :gender, as: :radio_buttons, collection: [['Male', '0'],['Female', '1']], label: false, checked: (f.object.gender ? "1" : "0")
-
-  .row
-    .col-sm-6
-      = f.input :religion_id, collection: Religion.all, wrapper: :fa_select, include_blank: false
-    .col-sm-6
-      = f.input :civil_status_id, collection: CivilStatus.all.map{|v| [v.name, v.id] }, wrapper: :fa_select, include_blank: false
-
-  = f.simple_fields_for :applicant_contact_details do |ff|
+  = f.simple_fields_for :applicant do |ff|
     .row
-      .col-sm-12
-        .well.well-sm
-          .row
-            .col-sm-6
-              = ff.input :contact_type_id, collection: ContactType.all, wrapper: :fa_select, include_blank: false
-            .col-sm-6
-              = ff.input :value
+      .col-sm-4
+        = ff.input :first_name
+      .col-sm-2
+        = ff.input :middle_name
+      .col-sm-4
+        = ff.input :last_name
+      .col-sm-2
+        = ff.input :suffix_name, label: 'Suffix name (e.g. Jr.)'
 
-  = f.simple_fields_for :family_details, @wizard_form.current_wizard_step_instance.family_details do |ff|
     .row
-      .col-sm-12
-        span.label.label-default Family Details
-        .well.well-sm
-          .row
-            .col-sm-2
-              = ff.input :no_in_fam, label: 'Number in Family'
-            .col-sm-2
-              = ff.input :brothers
-            .col-sm-2
-              = ff.input :sisters
-            .col-sm-2
-              = ff.input :children
-            .col-sm-2
-              = ff.input :eldest, label: 'Eldest child'
-            .col-sm-2
-              = ff.input :youngest, label: 'Youngest child'
+      .col-sm-6.col-md-3
+        = ff.input :birthday, html5: true, as: :date, label: 'Date of Birth'
+      .col-sm-6.col-md-3
+        = ff.input :birthplace, label: 'Birth Place'
+      .col-sm-6.col-md-2
+        = ff.input :height, label: 'Height (cm)'
+      .col-sm-6.col-md-2
+        = ff.input :weight, label: 'Weight (kg)'
+      .col-sm-6.col-md-2
+        = ff.input :gender, as: :radio_buttons, collection: [['Male', '0'],['Female', '1']], label: false, checked: (ff.object.gender ? "1" : "0")
 
-  = f.simple_fields_for :father, @wizard_form.current_wizard_step_instance.father do |ff|
     .row
-      .col-sm-12
-        span.label.label-default Father
-        .well.well-sm
-          .row
-            .col-sm-4
-              = ff.input :name
-            .col-sm-4
-              = ff.input :age
-            .col-sm-4
-              = ff.input :occupation
+      .col-sm-6
+        = ff.input :religion_id, collection: Religion.all, wrapper: :fa_select, include_blank: false
+      .col-sm-6
+        = ff.input :civil_status_id, collection: CivilStatus.all.map{|v| [v.name, v.id] }, wrapper: :fa_select, include_blank: false
 
-  = f.simple_fields_for :mother, @wizard_form.current_wizard_step_instance.mother do |ff|
-    .row
-      .col-sm-12
-        span.label.label-default Mother
-        .well.well-sm
-          .row
-            .col-sm-4
-              = ff.input :name
-            .col-sm-4
-              = ff.input :age
-            .col-sm-4
-              = ff.input :occupation
+  //= f.simple_fields_for :applicant_contact_details do |ff|
+  //  .row
+  //    .col-sm-12
+  //      .well.well-sm
+  //        .row
+  //          .col-sm-6
+  //            = ff.input :contact_type_id, collection: ContactType.all, wrapper: :fa_select, include_blank: false
+  //          .col-sm-6
+  //            = ff.input :value
+  /
+  #applicant_contact_details
+    = f.simple_fields_for :applicant_contact_details do |ff|
+      = render 'admin/applicants/steps/applicant_contact_detail', f: ff
+    .links
+      = link_to_add_association 'add contact_details', f, :applicant_contact_details, partial: 'admin/applicants/steps/applicant_contact_detail'
+  /
+  /= f.simple_fields_for :family_details, @wizard_form.current_wizard_step_instance.family_details do |ff|
+  /  .row
+  /    .col-sm-12
+  /      span.label.label-default Family Details
+  /      .well.well-sm
+  /        .row
+  /          .col-sm-2
+  /            = ff.input :no_in_fam, label: 'Number in Family'
+  /          .col-sm-2
+  /            = ff.input :brothers
+  /          .col-sm-2
+  /            = ff.input :sisters
+  /          .col-sm-2
+  /            = ff.input :children
+  /          .col-sm-2
+  /            = ff.input :eldest, label: 'Eldest child'
+  /          .col-sm-2
+  /            = ff.input :youngest, label: 'Youngest child'
+  /
+  /= f.simple_fields_for :father do |ff|
+  /  .row
+  /    .col-sm-12
+  /      span.label.label-default Father
+  /      .well.well-sm
+  /        .row
+  /          .col-sm-4
+  /            = ff.input :name
+  /          .col-sm-4
+  /            = ff.input :age
+  /          .col-sm-4
+  /            = ff.input :occupation
 
-  = f.simple_fields_for :spouse, @wizard_form.current_wizard_step_instance.spouse do |ff|
-    .row
-      .col-sm-12
-        span.label.label-default Spouse
-        .well.well-sm
-          .row
-            .col-sm-4
-              = ff.input :name
-            .col-sm-4
-              = ff.input :age
-            .col-sm-4
-              = ff.input :occupation
+  /= f.simple_fields_for :mother, @wizard_form.current_wizard_step_instance.mother do |ff|
+  /  .row
+  /    .col-sm-12
+  /      span.label.label-default Mother
+  /      .well.well-sm
+  /        .row
+  /          .col-sm-4
+  /            = ff.input :name
+  /          .col-sm-4
+  /            = ff.input :age
+  /          .col-sm-4
+  /            = ff.input :occupation
+  /
+  /= f.simple_fields_for :spouse, @wizard_form.current_wizard_step_instance.spouse do |ff|
+  /  .row
+  /    .col-sm-12
+  /      span.label.label-default Spouse
+  /      .well.well-sm
+  /        .row
+  /          .col-sm-4
+  /            = ff.input :name
+  /          .col-sm-4
+  /            = ff.input :age
+  /          .col-sm-4
+  /            = ff.input :occupation

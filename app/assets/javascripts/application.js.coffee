@@ -4,6 +4,7 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require data-confirm-modal
+#= require cocoon
 
 window.Tenth ||= {}
 Tenth.Views ||= {}

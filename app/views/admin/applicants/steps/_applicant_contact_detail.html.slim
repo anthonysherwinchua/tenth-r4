@@ -1,0 +1,8 @@
+.row
+  .col-sm-12
+    .well.well-sm
+      .row
+        .col-sm-6
+          = f.input :contact_type_id, collection: ContactType.all, wrapper: :fa_select, include_blank: false
+        .col-sm-6
+          = f.input :value
