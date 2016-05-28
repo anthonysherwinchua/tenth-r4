@@ -59,6 +59,7 @@ GEM
       sass (>= 3.3.4)
     builder (3.2.2)
     byebug (8.2.2)
+    cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
@@ -256,6 +257,7 @@ DEPENDENCIES
   aws-sdk (~> 2)
   bootstrap-sass (~> 3.3.6)
   byebug
+  cocoon
   coffee-rails (~> 4.1.0)
   data-confirm-modal!
   database_cleaner
