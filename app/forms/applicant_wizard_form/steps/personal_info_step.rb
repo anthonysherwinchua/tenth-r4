@@ -13,12 +13,7 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < BaseForm
     @applicant = params[:applicant] || Applicant.new
     @applicant_family_detail = @applicant.applicant_family_detail || @applicant.build_applicant_family_detail
 
-    relationship = Relationship.find_by(name: 'Father')
-    @father = @applicant.applicant_family_members.where(relationship_id: relationship.id).first_or_initialize
-    relationship = Relationship.find_by(name: 'Mother')
-    @mother = @applicant.applicant_family_members.where(relationship_id: relationship.id).first_or_initialize
-    relationship = Relationship.find_by(name: 'Spouse')
-    @spouse = @applicant.applicant_family_members.where(relationship_id: relationship.id).first_or_initialize
+    prepare_relationships %w(father mother spouse)
 
     super(params)
 
@@ -36,6 +31,17 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < BaseForm
     @applicant_family_detail.valid?
     @applicant_contact_details.map(&:valid?)
     puts "Error: #{e.inspect}"
+  end
+
+  private
+
+  def prepare_relationships(names=[])
+    names.each{|name| prepare_relationship name }
+  end
+
+  def prepare_relationship(name)
+    relationship = Relationship.where(["lower(name) = ?", name]).first
+    instance_variable_set("@#{name}",  @applicant.applicant_family_members.where(relationship_id: relationship.id).first_or_initialize)
   end
 
 end
