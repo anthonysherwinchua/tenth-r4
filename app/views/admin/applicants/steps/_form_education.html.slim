@@ -1,16 +1,5 @@
-.form
-  - (1..@wizard_form.current_wizard_step::NUMBER_OF_EDUCATIONS).each do |i|
-    = f.simple_fields_for :"education_#{i}", @wizard_form.current_wizard_step_instance.send("education_#{i}") do |ff|
-      .row
-        .col-sm-12
-          span.label.label-default Education ##{i}
-          .well.well-sm
-            .row
-              .col-sm-4
-                = ff.input :academic_level_id, collection: AcademicLevel.all, wrapper: :fa_select, include_blank: false
-              .col-sm-4
-                = ff.input :school
-              .col-sm-2
-                = ff.input :from
-              .col-sm-2
-                = ff.input :to
+#applicant_educations
+  = f.simple_fields_for :applicant_educations do |ff|
+    = render 'admin/applicants/steps/applicant_education', f: ff
+  .links
+    = link_to_add_association 'add education', f, :applicant_educations, partial: 'admin/applicants/steps/applicant_education'

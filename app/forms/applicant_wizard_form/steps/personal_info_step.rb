@@ -32,6 +32,7 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < BaseForm
       @mother.save!
       @spouse.save!
     end
+    true
   rescue ActiveRecord::RecordInvalid => e
     @applicant_family_detail.valid?
     @applicant_contact_details.map(&:valid?)

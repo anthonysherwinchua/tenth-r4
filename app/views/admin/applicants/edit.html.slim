@@ -10,9 +10,8 @@
 
         = simple_form_for([:admin, @form.current_wizard_step_instance], url: admin_applicant_path(@applicant), method: :patch) do |f|
           .panel-body
-            /= hidden_field_tag 'step', @wizard_form.step_manager.current_step
-            /= render "admin/applicants/steps/#{@wizard_form.current_wizard_step.partial_name}", f: f
-            = render 'admin/applicants/steps/form_personal_info', f: f
+            = hidden_field_tag 'step', @form.step_manager.current_step
+            = render "admin/applicants/steps/#{@form.current_wizard_step.partial_name}", f: f
           .panel-footer
 
             .btn-toolbar

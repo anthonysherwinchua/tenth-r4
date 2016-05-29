@@ -6,12 +6,11 @@ module WizardForm::Base
     class << base
       alias_method :__new, :new
       def new(args={})
+        step = args.delete(:step).to_i
         e = __new
         e.prepare_step_manager
-        step = args.delete :step
-        step = 1 if step.to_i > self::STEPS.count
-        e.step_manager.current_step = (step || 1)
         e.step_manager.prepare_completed_step(self::STEPS, args)
+        e.step_manager.current_step = (step == 0 ? e.step_manager.last_permitted_step : step)
         e.prepare_current_wizard_step_instance(args)
         e
       end

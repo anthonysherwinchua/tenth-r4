@@ -1,7 +1,7 @@
 class Admin::ApplicantsController < Admin::BaseController
   before_action :authorize_encoder_access?
 
-  before_action :prepare_form, only: :update
+  before_action :prepare_form, only: [:edit, :update]
 
   def index
     @applicants = Applicant.all
@@ -11,10 +11,7 @@ class Admin::ApplicantsController < Admin::BaseController
     @form = ApplicantWizardForm::Base.new
   end
 
-  def edit
-    @applicant = Applicant.find(params[:id])
-    @form = ApplicantWizardForm::Base.new(applicant: @applicant)
-  end
+  def edit; end
 
   def create
     @form = ApplicantWizardForm::Base.new
@@ -40,7 +37,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def prepare_form
     @applicant = Applicant.find(params[:id])
-    @form = ApplicantWizardForm::Base.new(applicant: @applicant)
+    @form = ApplicantWizardForm::Base.new(applicant: @applicant, step: params[:step])
  end
 
   def form_params

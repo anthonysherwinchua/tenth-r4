@@ -27,7 +27,7 @@ module WizardForm
     end
 
     def next_step!
-      if @current_step > @completed_step
+      if @current_step < @completed_step
         @completed_step += 1
         @current_step += 1
       end
@@ -39,13 +39,15 @@ module WizardForm
 
     def prepare_completed_step(steps, *args)
       steps.each_with_index do |step_klass, index|
-        step = step_klass.new(*args)
-        unless step.valid?
+        step = step_klass.new
+
+        args_dup = args.deep_dup
+        unless step.valid?(*args_dup)
           step.errors.clear
           break
         end
-        @completed_step = index+1
-        @current_step = next_step if @current_step > next_step
+        set_completed_step(index + 1)
+        set_current_step(next_step) if @current_step > next_step
       end
     end
 
