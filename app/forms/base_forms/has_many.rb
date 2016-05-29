@@ -11,11 +11,13 @@ module BaseForms::HasMany
       @@attributes[association] = klass
     end
 
-    def base.has_many(name, klass)
+    def base.has_many(name, klass, opts={})
       @@has_many_attributes ||=[]
 
       @@has_many_models ||= []
       @@has_many_models << name
+
+      @@has_many_attributes << ["#{name}_attributes": prepare_attributes(klass, opts)]
 
       attr_accessor name
       delegate :attributes=, to: name, prefix: true

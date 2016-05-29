@@ -37,14 +37,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
   def form_params
     params.require(:applicant_wizard_form_steps_personal_info_step)
-      .permit(applicant_attributes: [:first_name, :last_name, :middle_name, :suffix_name, :birthday, :birthplace,
-                                     :height, :weight, :gender, :religion_id, :civil_status_id],
-              applicant_family_detail_attributes: [:no_in_fam, :brothers, :sisters, :children, :eldest, :youngest],
-              father_attributes: [:name, :occupation, :age],
-              mother_attributes: [:name, :occupation, :age],
-              spouse_attributes: [:name, :occupation, :age],
-              applicant_contact_details_attributes: [:id, :contact_type_id, :value]
-      )
+      .permit(ApplicantWizardForm::Steps::PersonalInfoStep.attributes_for_strong_params)
   end
 
   # before_action :prepare_applicant, only: [:show, :new, :edit, :create, :update]
