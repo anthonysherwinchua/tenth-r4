@@ -3,6 +3,10 @@ class Admin::ApplicantsController < Admin::BaseController
 
   before_action :prepare_form, only: :update
 
+  def index
+    @applicants = Applicant.all
+  end
+
   def new
     @form = ApplicantWizardForm::Base.new
   end
