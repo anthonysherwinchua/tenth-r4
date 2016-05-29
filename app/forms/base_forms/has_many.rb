@@ -31,6 +31,7 @@ module BaseForms::HasMany
 
       define_method("#{name}_attributes=") do |attributes|
         main_model = instance_variable_get("@#{self.class.class_variable_get('@@main_model')}")
+        main_model.public_send(name).reload
 
         attributes.each do |key, value|
           id = value.delete('id')

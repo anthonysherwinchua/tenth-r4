@@ -21,15 +21,23 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < BaseForm
     @applicant_contact_details = @applicant.applicant_contact_details
   end
 
-  def save
+  def save(params)
+    super(params)
+
     Applicant.transaction do
       @applicant.save!
-      @applicant_family_detail.save!
       @applicant_contact_details.map(&:save!)
+      @applicant_family_detail.save!
+      @father.save!
+      @mother.save!
+      @spouse.save!
     end
   rescue ActiveRecord::RecordInvalid => e
     @applicant_family_detail.valid?
     @applicant_contact_details.map(&:valid?)
+    @father.valid?
+    @mother.valid?
+    @spouse.valid?
     puts "Error: #{e.inspect}"
   end
 

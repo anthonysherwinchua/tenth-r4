@@ -8,7 +8,7 @@
 
       .panel.panel-default
 
-        = simple_form_for [:admin, @form], url: admin_applicants_path, method: :post do |f|
+        = simple_form_for [:admin, @form.current_wizard_step_instance], url: admin_applicants_path, method: :post do |f|
           .panel-body
             /= render "admin/applicants/steps/#{@wizard_form.current_wizard_step.partial_name}", f: f
             = render 'admin/applicants/steps/form_personal_info', f: f

@@ -37,11 +37,10 @@ module WizardForm
       wizard_completed? ? @completed_step : next_step
     end
 
-    def prepare_completed_step(steps, model)
-      _model = model.class.where(id: model&.id).first_or_initialize
+    def prepare_completed_step(steps, *args)
       steps.each_with_index do |step_klass, index|
-        step = step_klass.new(_model)
-        if !model.persisted? || !step.valid?
+        step = step_klass.new(*args)
+        unless step.valid?
           step.errors.clear
           break
         end

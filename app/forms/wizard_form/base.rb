@@ -1,18 +1,18 @@
 module WizardForm::Base
 
   attr_reader :step_manager, :current_wizard_step_instance
-  attr_accessor :model
 
   def self.included(base)
     class << base
       alias_method :__new, :new
-      def new(*args)
-        e = __new(*args)
+      def new(args={})
+        e = __new
         e.prepare_step_manager
-        e.step_manager.prepare_completed_step(self::STEPS, args.first)
-        e.model = args.first
-        e.step_manager.current_step = args.second.to_i
-        e.prepare_current_wizard_step_instance(e.model)
+        step = args.delete :step
+        step = 1 if step.to_i > self::STEPS.count
+        e.step_manager.current_step = (step || 1)
+        e.step_manager.prepare_completed_step(self::STEPS, args)
+        e.prepare_current_wizard_step_instance(args)
         e
       end
     end
@@ -22,8 +22,8 @@ module WizardForm::Base
     @step_manager = WizardForm::StepManager.new(total_steps: steps.count, completed_step: 0, current_step: 1)
   end
 
-  def prepare_current_wizard_step_instance(model)
-    @current_wizard_step_instance = current_wizard_step.new(model)
+  def prepare_current_wizard_step_instance(*args)
+    @current_wizard_step_instance = current_wizard_step.new(*args)
   end
 
   def current_wizard_step
@@ -34,7 +34,7 @@ module WizardForm::Base
     raise WizardForm::StepsNotSetup
   end
 
-  def save(params={})
+  def save(params)
     status = @current_wizard_step_instance.save(params)
     if status
       @step_manager.next_step!
@@ -42,7 +42,4 @@ module WizardForm::Base
     status
   end
 
-  def errors
-    @current_wizard_step_instance.errors
-  end
 end
