@@ -7,6 +7,8 @@
   has_many :applicant_employments, inverse_of: :applicant, dependent: :destroy
   has_many :applicant_family_members, inverse_of: :applicant, dependent: :destroy
   has_many :applicant_educations, inverse_of: :applicant, dependent: :destroy
+  has_many :applicant_languages, inverse_of: :applicant, dependent: :destroy
+  has_many :applicant_skills, inverse_of: :applicant, dependent: :destroy
   has_many :applicant_contact_details, inverse_of: :applicant, dependent: :destroy
 
   validates :first_name, :last_name, :birthday, presence: true

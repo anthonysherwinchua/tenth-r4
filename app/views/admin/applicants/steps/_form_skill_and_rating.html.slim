@@ -1,1 +1,14 @@
-| SKILL AND RATING
+.row
+  .col-xs-6
+    #applicant_languages
+      = f.simple_fields_for :applicant_languages do |ff|
+        = render 'admin/applicants/steps/applicant_language', f: ff
+      .links
+        = link_to_add_association 'add language', f, :applicant_languages, partial: 'admin/applicants/steps/applicant_language'
+
+  .col-xs-6
+    #applicant_skills
+      = f.simple_fields_for :applicant_skills do |ff|
+        = render 'admin/applicants/steps/applicant_skill', f: ff
+      .links
+        = link_to_add_association 'add skill', f, :applicant_skills, partial: 'admin/applicants/steps/applicant_skill'

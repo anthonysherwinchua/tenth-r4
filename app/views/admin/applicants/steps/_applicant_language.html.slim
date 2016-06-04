@@ -1,0 +1,12 @@
+.row
+  .col-sm-12
+    .well.well-sm
+      .row
+        .col-sm-12
+          = f.input :language_id, collection: Language.all, wrapper: :fa_select, include_blank: false
+        .col-sm-4
+          = f.input :read
+        .col-sm-4
+          = f.input :write
+        .col-sm-4
+          = f.input :speak

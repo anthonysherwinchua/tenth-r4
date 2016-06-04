@@ -1,0 +1,6 @@
+.row
+  .col-sm-12
+    .well.well-sm
+      .row
+        .col-sm-12
+          = f.input :skill_id, collection: Skill.all, wrapper: :fa_select, include_blank: false
