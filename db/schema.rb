@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509063708) do
+ActiveRecord::Schema.define(version: 20160604132452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,6 +163,8 @@ ActiveRecord::Schema.define(version: 20160509063708) do
     t.string  "height"
     t.string  "weight"
     t.string  "video_url",       default: ""
+    t.string  "mug_shot"
+    t.string  "full_body"
   end
 
   add_index "applicants", ["birthday"], name: "index_applicants_on_birthday", using: :btree

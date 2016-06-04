@@ -1,1 +1,7 @@
-| PHOTO
+.form
+  = f.simple_fields_for :applicant do |ff|
+    .row
+      .col-sm-6
+        = ff.input :mug_shot
+      .col-sm-6
+        = ff.input :full_body

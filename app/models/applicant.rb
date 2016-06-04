@@ -1,5 +1,8 @@
 ﻿class Applicant < ActiveRecord::Base
 
+  mount_uploader :mug_shot, MugShotUploader
+  mount_uploader :full_body, FullBodyUploader
+
   belongs_to :religion, inverse_of: :applicants
   belongs_to :civil_status, inverse_of: :applicants
 

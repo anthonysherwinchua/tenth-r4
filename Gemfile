@@ -35,6 +35,9 @@ gem 'select2-rails'
 gem 'font-awesome-rails'
 gem 'cocoon'
 
+# Image processing
+gem 'carrierwave'
+
 # Background worker
 gem 'sidekiq'
 

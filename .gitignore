@@ -26,3 +26,5 @@
 app/policies/sample_policy.rb
 coverage
 .byebug_history
+
+public/uploads
