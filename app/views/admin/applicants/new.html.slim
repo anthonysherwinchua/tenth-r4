@@ -1,6 +1,6 @@
-/= render 'layouts/admin/breadcrumb', current_item_parent_name: @current_item_parent&.name
-/
-/= render 'admin/applicants/step_wizard/steps', step: 1
+= render 'layouts/admin/breadcrumb', current_item_parent_name: @current_item_parent&.name
+
+= render 'admin/applicants/step_wizard/steps'
 
 .container
   .row
@@ -10,7 +10,7 @@
 
         = simple_form_for [:admin, @form.current_wizard_step_instance], url: admin_applicants_path, method: :post do |f|
           .panel-body
-            = render "admin/applicants/steps/#{@form.current_wizard_step.partial_name}", f: f
+            = render "admin/applicants/steps/#{@form.partial_name}", f: f
 
           .panel-footer
 

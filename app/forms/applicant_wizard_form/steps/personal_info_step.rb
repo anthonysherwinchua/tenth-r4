@@ -34,12 +34,27 @@ class ApplicantWizardForm::Steps::PersonalInfoStep < BaseForm
     end
     true
   rescue ActiveRecord::RecordInvalid => e
-    @applicant_family_detail.valid?
-    @applicant_contact_details.map(&:valid?)
-    @father.valid?
-    @mother.valid?
-    @spouse.valid?
+    valid?
     puts "Error: #{e.inspect}"
+    false
+  end
+
+  def validate_and_clear_errors
+    valid = valid?
+    [@applicant, @applicant_family_detail, @father, @mother, @spouse].each do |e|
+      e.errors.clear
+    end
+    @applicant_contact_details.map{|e| e.errors.clear }
+    valid
+  end
+
+  def valid?
+    @applicant.valid? &&
+      @applicant_contact_details.map(&:valid?) &&
+      @applicant_family_detail.valid? &&
+      @father.valid? &&
+      @mother.valid? &&
+      @spouse.valid?
   end
 
   private

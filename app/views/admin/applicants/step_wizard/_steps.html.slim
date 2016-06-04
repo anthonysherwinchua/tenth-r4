@@ -3,13 +3,14 @@
     .col-md-12
       #wizard.swMain
         ul.anchor
-          - @wizard_form.steps.each_with_index do |step, index|
-            - step_number = index+1
-            li
-              = link_to step_link(step_number), class: class_for_wizard_step(step_number) do
-                .stepNumber
-                  = step_number
-                span.stepDesc
-                  = step.title
-                  br
-                  small = step.description
+          - @form.steps.each_with_index do |step, index|
+            - decorate(step, WizardStepDecorator) do |decorated_step|
+              - step_number = index+1
+              li
+                = link_to step_link(step_number), class: class_for_wizard_step(step_number) do
+                  .stepNumber
+                    = step_number
+                  span.stepDesc
+                    = decorated_step.title
+                    br
+                    small = decorated_step.description

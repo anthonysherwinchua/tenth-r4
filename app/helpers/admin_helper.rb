@@ -4,11 +4,11 @@ module AdminHelper
   end
 
   def class_for_wizard_step(step)
-    if @wizard_form.step_manager.current_step == step
+    if @form.step_manager.current_step == step
       'selected'
-    elsif @wizard_form.step_manager.completed_step >= step
+    elsif @form.step_manager.completed_step >= step
       'done'
-    elsif @wizard_form.step_manager.next_step >= step
+    elsif @form.step_manager.next_step >= step
       'next'
     else
       'disabled'
@@ -16,7 +16,7 @@ module AdminHelper
   end
 
   def step_link(step)
-    if @wizard_form.applicant.persisted?
+    if @form.current_wizard_step_instance.applicant.persisted?
       edit_admin_applicant_path(step: step)
     else
       "#"

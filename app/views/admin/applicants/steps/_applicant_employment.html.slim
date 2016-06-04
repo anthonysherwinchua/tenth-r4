@@ -1,0 +1,23 @@
+.row
+  .col-sm-12
+    .well.well-sm
+      .row
+        .col-sm-4
+          = f.input :employer
+        .col-sm-2
+          = f.input :occupation
+        .col-sm-2
+          = f.input :country, collection: Country.enabled
+        .col-sm-4
+          = f.input :address
+      .row
+        .col-sm-1
+          = f.input :from
+        .col-sm-1
+          = f.input :to
+        .col-sm-2
+          = f.input :years
+        .col-sm-4
+          = f.input :contact
+        .col-sm-3
+          = f.input :salary

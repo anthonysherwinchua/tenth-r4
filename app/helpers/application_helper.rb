@@ -46,6 +46,12 @@ module ApplicationHelper
     link_controller_name.include?(controller_name) ? 'active' : ''
   end
 
+  def decorate(model, decorator_class = nil)
+    decorator_class ||= "#{model.class}Decorator".constantize
+    decorator = decorator_class.new(model)
+    yield(decorator) if block_given?
+  end
+
   private
 
   def string_for(flash_type)

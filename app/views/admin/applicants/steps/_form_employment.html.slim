@@ -1,0 +1,5 @@
+#applicant_employments
+  = f.simple_fields_for :applicant_employments do |ff|
+    = render 'admin/applicants/steps/applicant_employment', f: ff
+  .links
+    = link_to_add_association 'add employment', f, :applicant_employments, partial: 'admin/applicants/steps/applicant_employment'

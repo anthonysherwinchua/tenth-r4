@@ -1,6 +1,7 @@
 class Admin::ApplicantsController < Admin::BaseController
   before_action :authorize_encoder_access?
 
+  before_action :prepare_step, only: [:edit, :update]
   before_action :prepare_form, only: [:edit, :update]
 
   def index
@@ -18,7 +19,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
     if @form.save(form_params)
       flash[:notice] = "Created contacts"
-      redirect_to edit_admin_applicant_path(@applicant)
+      redirect_to edit_admin_applicant_path(@form.current_wizard_step_instance.applicant)
     else
       flash[:error] = "There were errors"
       render :new
@@ -28,17 +29,24 @@ class Admin::ApplicantsController < Admin::BaseController
   def update
     if @form.save(form_params)
       flash[:notice] = "Updated contacts"
-      redirect_to edit_admin_applicant_path(@applicant)
+      opts = @form.step_manager.wizard_completed? ? { step: @step } : { step: (@step + 1) }
+      redirect_to edit_admin_applicant_path(@applicant, opts)
     else
       flash[:error] = "There were errors"
       render :action => 'edit'
     end
   end
 
+  private
+
+  def prepare_step
+    @step = params[:step].to_i
+  end
+
   def prepare_form
     @applicant = Applicant.find(params[:id])
     @form = ApplicantWizardForm::Base.new(applicant: @applicant, step: params[:step])
- end
+  end
 
   def form_params
     params.require(@form.current_wizard_step.attributes_for_strong_params_container)

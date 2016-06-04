@@ -29,6 +29,10 @@ module WizardForm::Base
     steps[@step_manager.current_step-1]
   end
 
+  def partial_name
+    "form_#{current_wizard_step.name.demodulize.underscore.chomp('_step')}"
+  end
+
   def steps
     raise WizardForm::StepsNotSetup
   end

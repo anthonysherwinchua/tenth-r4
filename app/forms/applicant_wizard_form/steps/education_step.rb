@@ -21,9 +21,23 @@ class ApplicantWizardForm::Steps::EducationStep < BaseForm
     ApplicantEducation.transaction do
       @applicant_educations.map(&:save!)
     end
+    true
   rescue ActiveRecord::RecordInvalid => e
     @applicant_educations.map(&:valid?)
+    errors.add(:base, e)
     puts "Error (Edu): #{e.inspect}"
+    false
+  end
+
+  def validate_and_clear_errors
+    valid = valid?
+    @applicant_educations.map{|e| e.errors.clear }
+    @applicant.applicant_educations = @applicant.applicant_educations.select{|v| v.persisted? }
+    valid
+  end
+
+  def valid?
+    !(@applicant_educations.map(&:valid?).include? false)
   end
 
   private

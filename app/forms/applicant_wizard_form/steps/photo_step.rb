@@ -1,10 +1,20 @@
-class ApplicantWizardForm::Steps::PhotoStep < WizardForm::Step
+class ApplicantWizardForm::Steps::PhotoStep < BaseForm
 
-  attr_accessor :first_name, :last_name
+  main_model :applicant, Applicant
 
-  validates :first_name, :last_name, presence: true
+  def initialize(params={})
+    @applicant = params[:applicant] || Applicant.new
 
-  def initialize(applicant)
-    @applicant = applicant
+    super(params)
+  end
+
+  def validate_and_clear_errors
+    valid = valid?
+
+    valid
+  end
+
+  def valid?
+    true
   end
 end

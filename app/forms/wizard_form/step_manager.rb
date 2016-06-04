@@ -39,10 +39,9 @@ module WizardForm
 
     def prepare_completed_step(steps, *args)
       steps.each_with_index do |step_klass, index|
-        step = step_klass.new
+        step = step_klass.new(*args)
 
-        args_dup = args.deep_dup
-        unless step.valid?(*args_dup)
+        unless step.validate_and_clear_errors
           step.errors.clear
           break
         end
