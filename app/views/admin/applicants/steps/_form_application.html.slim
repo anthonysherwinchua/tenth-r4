@@ -1,1 +1,5 @@
-| Form Application
+#applicant_educations
+  = f.simple_fields_for :applications do |ff|
+    = render 'admin/applicants/steps/application', f: ff
+  .links
+    = link_to_add_association 'add application', f, :applications, partial: 'admin/applicants/steps/application'

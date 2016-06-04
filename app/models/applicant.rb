@@ -13,6 +13,7 @@
   has_many :applicant_languages, inverse_of: :applicant, dependent: :destroy
   has_many :applicant_skills, inverse_of: :applicant, dependent: :destroy
   has_many :applicant_contact_details, inverse_of: :applicant, dependent: :destroy
+  has_many :applications, inverse_of: :applicant, dependent: :destroy
 
   validates :first_name, :last_name, :birthday, presence: true
   validates :religion, :civil_status, presence: true

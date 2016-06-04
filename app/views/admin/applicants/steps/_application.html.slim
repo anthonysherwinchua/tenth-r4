@@ -1,0 +1,18 @@
+.row
+  .col-sm-12
+    .well.well-sm
+      .row
+        .col-sm-2
+          = f.input :available
+        .col-sm-10
+          = f.input :job_opening_id, collection: JobOpeningDecorator.wrap_all(JobOpening.all), wrapper: :fa_select, include_blank: false
+        .col-sm-3
+          = f.input :applicant_code
+        .col-sm-3
+          = f.input :availability
+        .col-sm-3
+          = f.input :date_applied
+        .col-sm-3
+          = f.input :availability
+
+

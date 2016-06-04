@@ -1,5 +1,9 @@
 class JobOpeningDecorator < SimpleDelegator
 
+  def self.wrap_all(job_openings)
+    job_openings.map{|jo| JobOpeningDecorator.new(jo) }
+  end
+
   def name
     occupation.name + '@' + country.name
   end
