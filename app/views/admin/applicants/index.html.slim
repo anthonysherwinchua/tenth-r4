@@ -14,5 +14,5 @@
             tr
               td = current_item.first_name
               td
-                = render 'admin/base/buttons', current_item: current_item
+                = link_to 'Edit', [:edit, :admin, @current_item_parent, current_item], class: 'btn btn-sm btn-primary'
 

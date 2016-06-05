@@ -2,6 +2,10 @@
   = f.simple_fields_for :applicant do |ff|
     .row
       .col-sm-6
+        = image_tag(ff.object.mug_shot_url, class: 'img-thumbnail') if ff.object.mug_shot?
         = ff.input :mug_shot
+        = ff.hidden_field :mug_shot_cache
       .col-sm-6
+        = image_tag(ff.object.full_body_url, class: 'img-thumbnail') if ff.object.full_body?
         = ff.input :full_body
+        = ff.hidden_field :full_body_cache
