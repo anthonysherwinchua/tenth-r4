@@ -27,7 +27,7 @@ module WizardForm
     end
 
     def next_step!
-      if @current_step < @completed_step
+      unless wizard_completed?
         @completed_step += 1
         @current_step += 1
       end
